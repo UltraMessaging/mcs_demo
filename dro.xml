@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<tnw-gateway version="1.0">
+  <daemon>
+    <name>dro1</name>
+    <log type="console"/>
+    <pidfile>dro.pid</pidfile>
+    <monitor interval="5">
+      <transport-module module="lbm" options="config=mon.cfg;context|request_tcp_port=12701"/>
+      <format-module module="pb"/>
+    </monitor>
+    <xml-config>um.xml</xml-config>
+<!--
+    <daemon-monitor>
+      <lbm-config>dromon.cfg</lbm-config>
+      <remote-snapshot-request allow="1"/>
+      <remote-config-changes-request allow="1"/>
+    </daemon-monitor>
+-->
+  </daemon>
+  <portals>
+    <endpoint>
+      <name>TRD1</name>
+      <domain-id>1</domain-id>
+      <lbm-attributes>
+      	<option name="context_name" scope="context" value="TRD1" />
+      </lbm-attributes>
+    </endpoint>
+    <endpoint>
+      <name>TRD2</name>
+      <domain-id>2</domain-id>
+      <lbm-attributes>
+      	<option name="context_name" scope="context" value="TRD2" />
+      </lbm-attributes>
+    </endpoint>
+  </portals>
+</tnw-gateway>

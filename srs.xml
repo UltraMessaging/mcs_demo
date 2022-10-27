@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<um-srs version="1.0">
+  <daemon>
+    <log type="console"/>
+    <pid-file>srs.pid</pid-file>
+  </daemon>
+  <srs>
+    <interface>10.29.4.101</interface>
+    <port>12601</port>
+    <application-id>srs1</application-id>
+  </srs>
+  <daemon-monitor topic="/29west/statistics">
+    <ping-interval>5000</ping-interval>
+    <publishing-interval>
+      <default>5000</default>
+      <srs-stats>5000</srs-stats>
+      <um-client-stats>5000</um-client-stats>
+      <connection-events>5000</connection-events>
+      <srs-error-stats>5000</srs-error-stats>
+      <um-client-error-stats>5000</um-client-error-stats>
+      <config-opts>5000</config-opts>
+      <internal-config-opts>5000</internal-config-opts>
+    </publishing-interval>
+    <lbm-attributes>
+      <option scope="context" name="resolver_unicast_daemon" value="10.29.3.101:12801"/>
+      <option scope="context" name="default_interface" value="10.29.3.0/24"/>
+      <option scope="context" name="request_tcp_interface" value="10.29.3.0/24"/>
+
+      <option scope="source" name="transport" value="tcp"/>
+
+      <option scope="context" name="mim_incoming_address" value="0.0.0.0"/>
+      <option scope="context" name="resolver_unicast_port_low" value="12802"/>
+      <option scope="context" name="resolver_unicast_port_high" value="12809"/>
+      <option scope="context" name="request_tcp_reuseaddr" value="1"/>
+    </lbm-attributes>
+<!--
+    <publish-connection-events allow="true"/>
+    <remote-snapshot-request allow="true"/>
+-->
+    <monitor-format>pb</monitor-format>
+  </daemon-monitor>
+</um-srs>
