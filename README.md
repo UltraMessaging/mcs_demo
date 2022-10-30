@@ -4,8 +4,6 @@ to demonstrate setting up UM automatic monitoring.
 
 # Table of contents
 
-# Table of contents
-
 - [mcs_demo](#mcs_demo)
 - [Table of contents](#table-of-contents)
 - [COPYRIGHT AND LICENSE](#copyright-and-license)
