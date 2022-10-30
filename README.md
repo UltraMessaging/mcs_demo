@@ -69,3 +69,36 @@ Note that in this demo, multicast is not used for monitoring.
 * Disable the monitoring context's MIM and request ports.
 This minimizes the use of host resources.
 
+## Demo Architecture
+
+## Demo Files
+
+* tst.sh - Shell script to run the demo.
+* um.xml - UM library configuration file for the application messaging TRDs.
+This XML-format file contains UM configuration for the main messaging
+components (publisher, subscriber, Store, DRO).
+* srs.xml - Configuration file for Stateful Resolution Service (SRS),
+used to provide TCP-based topic resolution for one of the application
+messaging TRDs.
+* mon.cfg - UM library configuration file for the monitoring data TRD.
+This flat-format file contains UM configuation for the main messaging
+components to send their monitoring data to the MCS and the Java lbmmon
+example app.
+* lbmrd.xml - Configuration file for LBM Resolver Daemon (lbmrd),
+used to provide unicast topic resolution for the monitoring data TRD.
+* dro.xml - Configuration file for Dynamic Routing Option (DRO).
+The DRO routes messages between the two application messaging TRDs.
+* lbm.sh.example - Model file for creating "lbm.sh" file.
+Provides environment and license key.
+* lbmmon.java - Updated example application for collecting
+and printing monitoring data.
+* mcs.xml - Configuration file for Monitoring Collector Service (MCS).
+* mcs.properties - Additional configuration for MCS.
+* store.xml - Configuration file for persistent Store.
+
+Note: the mon.cfg must be a separate configuation file in the
+flat file format.
+This is because the components do not uniformely identify their
+monitoring contexts such that the "um.xml" can configure them,
+so the monitor_transport_opts "config" option must be used,
+which expects a "flat" file format.

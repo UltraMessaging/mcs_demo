@@ -4,13 +4,6 @@
     <log type="console"/>
     <pidfile>store.pid</pidfile>
     <xml-config>um.xml</xml-config>
-<!--
-    <daemon-monitor>
-      <lbm-config>storemon.cfg</lbm-config>
-      <remote-snapshot-request allow="1"/>
-      <remote-config-changes-request allow="1"/>
-    </daemon-monitor>
--->
   </daemon>
 
   <stores>
