@@ -1,6 +1,8 @@
 # mcs_demo
 A set of Ultra Messaging configuration files and a test script
-to demonstrate setting up UM automatic monitoring.
+to demonstrate setting up UM automatic monitoring using
+the Monitoring Collector Service (MCS).
+Also contains an updated version of the "lbmmon.java" example app.
 
 # Table of contents
 
@@ -53,14 +55,15 @@ UM daemons (Store, DRO, etc.).
 
 This repository has a script and configuration files to demonstrate
 UM's automatic monitoring capability using the Monitoring Collector
-Service (MCS).
+Service (MCS) and a modified version of the "lbmmon.java" example app.
 
 ## Prerequisits
 
-You must have the following installed on a Linux 64-bit system:
+You must have the following:
+* Linux 64-bit system (reasonably recent).
 * UMP or UMQ version 6.15 or beyond.
 * Java JDK 9 or beyond.
-* sqlite (recent version).
+* sqlite (reasonably recent).
 
 (Running this demo on Windows is straight-forward,
 but beyond the scope of this demo.)
