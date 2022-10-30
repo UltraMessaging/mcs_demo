@@ -4,6 +4,20 @@ to demonstrate setting up UM automatic monitoring.
 
 # Table of contents
 
+# Table of contents
+
+- [mcs_demo](#mcs_demo)
+- [Table of contents](#table-of-contents)
+- [COPYRIGHT AND LICENSE](#copyright-and-license)
+- [REPOSITORY](#repository)
+- [INTRODUCTION](#introduction)
+  - [Prerequisits](#prerequisits)
+  - [Configuration Goals](#configuration-goals)
+- [Demo Architecture](#demo-architecture)
+- [Demo Files](#demo-files)
+- [Run the Demo](#run-the-demo)
+  - [Sqlite Database](#sqlite-database)
+
 <sup>(table of contents from https://luciopaiva.com/markdown-toc/)</sup>
 
 # COPYRIGHT AND LICENSE
