@@ -69,9 +69,9 @@ Note that in this demo, multicast is not used for monitoring.
 * Disable the monitoring context's MIM and request ports.
 This minimizes the use of host resources.
 
-## Demo Architecture
+# Demo Architecture
 
-## Demo Files
+# Demo Files
 
 * tst.sh - Shell script to run the demo.
 * um.xml - UM library configuration file for the application messaging TRDs.
@@ -102,3 +102,56 @@ This is because the components do not uniformely identify their
 monitoring contexts such that the "um.xml" can configure them,
 so the monitor_transport_opts "config" option must be used,
 which expects a "flat" file format.
+
+# Run the Demo
+
+1. Ensure your test system has the [prereqisits](#prerequisits).
+1. Clone or download the repository at https://github.com/UltraMessaging/mcs_demo
+1. Copy the file "lbm.sh.example" to "lbm.sh" and modify per your environment.
+I.e. insert your license key and set your file paths.
+1. Enter:
+````
+./tst.sh
+````
+
+This should take about one and a half minutes to run,
+and should print a series of progress messages,
+including PIDs of asyncronous processes.
+
+The "mcs.out" file will contain the raw JSON records in a non-pretty format;
+difficult for humans to read, but easy for software tools to process.
+Note that the timestamps are in the form of [Unix time](https://en.wikipedia.org/wiki/Unix_time),
+the number of seconds since 00:00:00 UTC on 1 January 1970, excluding leap seconds.
+
+The "lbmmon.log" file will contain an easier to read form.
+
+One significant difference between the two files:
+mcs.out's records are grouped into four sections by record type -
+library stats, Store stats, DRO stats, and SRS stats -
+with chronological ordering within each section.
+In contrast, lbmmon.log's records are intermingled by type,
+in chronological order across record types.
+
+## Sqlite Database
+
+The sqlite database is initially created by tst.sh using the
+sqlite3 script contained in the UM package in the file "MCS/bin/ummon_db.sql".
+As of UM version 6.15, here is its content:
+````
+PRAGMA foreign_keys=OFF;
+BEGIN TRANSACTION;
+CREATE TABLE umsmonmsg(message json);
+CREATE TABLE umpmonmsg(message json);
+CREATE TABLE dromonmsg(message json);
+CREATE TABLE srsmonmsg(message json);
+COMMIT;
+````
+
+The mcs.out records are written by tst.sh using the following
+sqlite3 commands:
+````
+select * from umsmonmsg;
+select * from umpmonmsg;
+select * from dromonmsg;
+select * from srsmonmsg;
+````

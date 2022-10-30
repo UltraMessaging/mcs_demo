@@ -8,6 +8,9 @@ tmp.*
 ~*
 .DS_Store
 lbm.sh
+*.log
+*.out
+*.class
 
 # Prerequisites
 *.d
