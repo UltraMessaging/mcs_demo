@@ -22,6 +22,7 @@
       <internal-config-opts>5000</internal-config-opts>
     </publishing-interval>
     <lbm-attributes>
+      <!-- (These setting should be kept in sync with those in "mon.xml".) -->
       <option scope="context" name="resolver_unicast_daemon" value="10.29.3.101:12801"/>
       <option scope="context" name="default_interface" value="10.29.3.0/24"/>
       <option scope="context" name="request_tcp_interface" value="10.29.3.0/24"/>
@@ -33,10 +34,6 @@
       <option scope="context" name="resolver_unicast_port_high" value="12809"/>
       <option scope="context" name="request_tcp_reuseaddr" value="1"/>
     </lbm-attributes>
-<!--
-    <publish-connection-events allow="true"/>
-    <remote-snapshot-request allow="true"/>
--->
     <monitor-format>pb</monitor-format>
   </daemon-monitor>
 </um-srs>
