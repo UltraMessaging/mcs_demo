@@ -14,24 +14,22 @@ fi
 
 . ./lbm.sh
 
+# Build updated version of "lbmmon.java".
 javac -cp $L/MCS/lib/java-getopt-1.0.13.jar:$LBMJ/UMS_6.15.jar:$LBMJ/UMSMON_PROTO2_6.15.jar:$LBMJ/UMSMON_PROTO3_6.15.jar:$L/MCS/lib/protobuf-java-4.0.0-rc-2.jar:$L/MCS/lib/protobuf-java-util-4.0.0-rc-2.jar lbmmon.java >javac.log 2>&1
 if [ "$?" -ne 0 ]; then echo "`date` Error, see javac.log" >&2; exit 1; fi
 
-rm -rf cache state *.log *.pid *.out
-mkdir cache
-mkdir state
-
+# Kill background processes on control-C.
 trap "kill_pids; exit 1" 1 2 3 15
+
+# Unicast topic resolution using "lbmrd" for monitoring TRD.
+lbmrd lbmrd.xml >lbmrd.log 2>&1 &
+LBMRD_PID="$!"; echo "`date` LBMRD_PID=$LBMRD_PID"
 
 # Create sqlite database for MCS.
 rm -f mcs.db
 echo "`date` sqlite3 mcs.db <$L/MCS/bin/ummon_db.sql >sqlite.log"
 sqlite3 mcs.db <$L/MCS/bin/ummon_db.sql >sqlite.log 2>&1
 if [ "$?" -ne 0 ]; then echo "`date` Error, see sqlite.log" >&2; exit 1; fi
-
-# Unicast topic resolution using "lbmrd" for monitoring TRD.
-lbmrd lbmrd.xml >lbmrd.log 2>&1 &
-LBMRD_PID="$!"; echo "`date` LBMRD_PID=$LBMRD_PID"
 
 # Start Monitoring Collector Service (MCS)
 MCS mcs.xml >mcs.log 2>&1 &
@@ -64,6 +62,11 @@ done
 if [ ! -f "dro.pid" ]; then echo "`date` DRO fail?" >&2; kill_pids; exit 1; fi
 DRO_PID="`cat dro.pid`"; echo "`date` DRO_PID=$DRO_PID"
 sleep 1
+
+# Clear persistent Store's files.
+rm -rf cache state *.log *.pid *.out
+mkdir cache
+mkdir state
 
 # Start persistence Store.
 umestored store.xml >store.log 2>&1 &
