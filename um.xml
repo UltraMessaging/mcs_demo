@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <um-configuration version="1.0">
   <templates>
-    <template name="um_perf">
+    <template name="um_common">
       <options type="context">
         <option name="default_interface" default-value="10.29.4.0/24"/>
         <option name="request_tcp_interface" default-value="10.29.4.0/24"/>
@@ -25,19 +25,9 @@
         <option name="ume_message_stability_timeout" default-value="0"/>
         <option name="ume_flight_size" default-value="100000"/>
         <option name="ume_flight_size_bytes" default-value="140000000"/>
-        <!-- Quickly clean up exited sources for ease of testing. Typically do NOT
-             want to do this! -->
-        <option name="ume_activity_timeout" default-value="6000"/>
       </options>
       <options type="receiver">
         <option name="delivery_control_maximum_burst_loss" default-value="100000000"/>
-        <option name="transport_lbtrm_nak_generation_interval" default-value="1"/>
-        <option name="transport_lbtrm_send_naks" default-value="0"/>
-        <option name="use_otr" default-value="0"/>
-        <!-- To make testing quicker, time out LBTRM after 5.2 sec (lbmpong sleeps
-             5 sec before first send; don't time out too soon). Typically do NOT
-             want to do this! -->
-        <option name="transport_lbtrm_activity_timeout" default-value="5200"/>
       </options>
     </template>
     <template name="res_trd1">
@@ -57,15 +47,30 @@
         <option name="monitor_format" default-value="pb"/>
         <option name="monitor_interval" default-value="5"/>
         <option name="monitor_transport" default-value="lbm"/>
-        <option name="monitor_transport_opts" default-value="config=mon.cfg"/>
+      </options>
+    </template>
+    <template name="mon_ctx">
+      <!-- These setting should match srs.xml <daemon-monitor> settings. -->
+      <options type="context">
+        <option name="resolver_unicast_daemon" default-value="10.29.3.101:12801"/>
+        <option name="default_interface" default-value="10.29.3.0/24"/>
+        <option name="request_tcp_interface" default-value="10.29.3.0/24"/>
+        <option name="mim_incoming_address" default-value="0.0.0.0"/>
+        <option name="resolver_unicast_port_low" default-value="12802"/>
+        <option name="resolver_unicast_port_high" default-value="12809"/>
+        <option name="request_tcp_reuseaddr" default-value="1"/>
+        <option name="resolver_disable_udp_topic_resolution" default-value="0"/>
+      </options>
+      <options type="source">
+        <option name="transport" default-value="tcp"/>
       </options>
     </template>
   </templates>
 
   <applications>
-    <application name="umesrc" template="um_perf,um_mon,res_trd1">
+    <application name="umesrc">
       <contexts>
-        <context>
+        <context template="um_common,um_mon,res_trd1">
           <sources>
             <topic topicname="topic1">
               <options type="source">
@@ -75,36 +80,75 @@
             </topic>
           </sources>
         </context>
+        <context name="29west_statistics_context" template="mon_ctx">
+          <sources/>
+        </context>
       </contexts>
     </application>
 
-    <application name="umercv" template="um_perf,um_mon,res_trd2">
+    <application name="umercv">
       <contexts>
-        <context>
+        <context template="um_common,um_mon,res_trd2">
+          <sources/>
+        </context>
+        <context name="29west_statistics_context" template="mon_ctx">
+          <sources/>
+        </context>
+      </contexts>
+    </application>
+
+    <application name="tnwgd">
+      <contexts>
+        <context name="TRD1" template="um_common,res_trd1">
           <sources>
+            <topic topicname="topic1">
+              <options type="source">
+                <option name="transport_lbtrm_multicast_address" default-value="239.101.3.4"/>
+              </options>
+            </topic>
           </sources>
-          <receivers>
-          </receivers>
+        </context>
+        <context name="TRD2" template="um_common,res_trd2">
+          <sources>
+            <topic topicname="topic1">
+              <options type="source">
+                <option name="transport_lbtrm_multicast_address" default-value="239.101.3.3"/>
+              </options>
+            </topic>
+          </sources>
+        </context>
+        <context name="29west_statistics_context" template="mon_ctx">
+          <sources/>
         </context>
       </contexts>
     </application>
 
-    <application name="tnwgd" template="um_perf">
+    <application name="umestored">
       <contexts>
-        <context name="TRD1" template="res_trd1">
-          <options type="context">
-          </options>
+        <context name="store_topic1" template="um_common,um_mon,res_trd1">
+          <sources/>
         </context>
-        <context name="TRD2" template="res_trd2">
-          <options type="context">
-          </options>
+        <context name="29west_statistics_context" template="mon_ctx">
+          <sources/>
         </context>
       </contexts>
     </application>
 
-    <application name="umestored" template="um_perf,um_mon,res_trd1">
+    <application name="mcs">
       <contexts>
+        <context name="29west_statistics_context" template="mon_ctx">
+          <sources/>
+        </context>
       </contexts>
     </application>
+
+    <application name="lbmmon">
+      <contexts>
+        <context name="29west_statistics_context" template="mon_ctx">
+          <sources/>
+        </context>
+      </contexts>
+    </application>
+
   </applications>
 </um-configuration>

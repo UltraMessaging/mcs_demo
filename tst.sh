@@ -14,6 +14,8 @@ fi
 
 . ./lbm.sh
 
+rm -rf cache state *.log *.pid *.out
+
 # Build updated version of "lbmmon.java".
 javac -cp $L/MCS/lib/java-getopt-1.0.13.jar:$LBMJ/UMS_6.15.jar:$LBMJ/UMSMON_PROTO2_6.15.jar:$LBMJ/UMSMON_PROTO3_6.15.jar:$L/MCS/lib/protobuf-java-4.0.0-rc-2.jar:$L/MCS/lib/protobuf-java-util-4.0.0-rc-2.jar lbmmon.java >javac.log 2>&1
 if [ "$?" -ne 0 ]; then echo "`date` Error, see javac.log" >&2; exit 1; fi
@@ -29,10 +31,10 @@ LBMRD_PID="$!"; echo "`date` LBMRD_PID=$LBMRD_PID"
 rm -f mcs.db
 echo "`date` sqlite3 mcs.db <$L/MCS/bin/ummon_db.sql >sqlite.log"
 sqlite3 mcs.db <$L/MCS/bin/ummon_db.sql >sqlite.log 2>&1
-if [ "$?" -ne 0 ]; then echo "`date` Error, see sqlite.log" >&2; exit 1; fi
+if [ "$?" -ne 0 ]; then echo "`date` Error, see sqlite.log" >&2; kill_pids; exit 1; fi
 
 # Start Monitoring Collector Service (MCS)
-MCS mcs.xml >mcs.log 2>&1 &
+LBM_XML_CONFIG_FILENAME=um.xml LBM_XML_CONFIG_APPNAME=mcs MCS mcs.xml >mcs.log 2>&1 &
 # Wait up to 5 seconds for MCS to create its PID file.
 for I in 1 2 3 4 5; do :
   if [ ! -f "mcs.pid" ]; then sleep 1; fi
@@ -41,7 +43,7 @@ if [ ! -f "mcs.pid" ]; then echo "`date` mcs fail?" >&2; kill_pids; exit 1; fi
 MCS_PID="`cat mcs.pid`"; echo "`date` MCS_PID=$MCS_PID"
 
 # Start "lbmmon" java example application
-java -cp .:$L/MCS/lib/java-getopt-1.0.13.jar:$LBMJ/UMS_6.15.jar:$LBMJ/UMSMON_PROTO2_6.15.jar:$LBMJ/UMSMON_PROTO3_6.15.jar:$L/MCS/lib/protobuf-java-4.0.0-rc-2.jar:$L/MCS/lib/protobuf-java-util-4.0.0-rc-2.jar lbmmon --transport-opts="config=mon.cfg" --format=pb --format-opts="passthrough=convert" >lbmmon.log 2>&1 &
+LBM_XML_CONFIG_FILENAME=um.xml LBM_XML_CONFIG_APPNAME=lbmmon java -cp .:$L/MCS/lib/java-getopt-1.0.13.jar:$LBMJ/UMS_6.15.jar:$LBMJ/UMSMON_PROTO2_6.15.jar:$LBMJ/UMSMON_PROTO3_6.15.jar:$L/MCS/lib/protobuf-java-4.0.0-rc-2.jar:$L/MCS/lib/protobuf-java-util-4.0.0-rc-2.jar lbmmon --format=pb --format-opts="passthrough=convert" >lbmmon.log 2>&1 &
 LBMMON_PID="$!"; echo "`date` LBMMON_PID=$LBMMON_PID"
 
 # Start Stateful Resolver Service (SRS)
@@ -64,7 +66,6 @@ DRO_PID="`cat dro.pid`"; echo "`date` DRO_PID=$DRO_PID"
 sleep 1
 
 # Clear persistent Store's files.
-rm -rf cache state *.log *.pid *.out
 mkdir cache
 mkdir state
 

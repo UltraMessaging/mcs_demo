@@ -5,7 +5,7 @@
     <log type="console"/>
     <pidfile>dro.pid</pidfile>
     <monitor interval="5">
-      <transport-module module="lbm" options="config=mon.cfg"/>
+      <transport-module module="lbm"/>
       <format-module module="pb"/>
     </monitor>
     <xml-config>um.xml</xml-config>

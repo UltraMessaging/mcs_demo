@@ -8,7 +8,4 @@
     <type>sqlite</type>
     <properties-file>mcs.properties</properties-file>
   </connector>
-  <receiver-transport-opts>
-    <config-file>mon.cfg</config-file>
-  </receiver-transport-opts>
 </um-mcs>
