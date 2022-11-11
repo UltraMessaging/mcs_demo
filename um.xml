@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <um-configuration version="1.0">
   <templates>
-    <template name="um_common">
+    <template name="mytemplate">
+      <!-- Put your application configurations here. -->
       <options type="context">
         <option name="default_interface" default-value="10.29.4.0/24"/>
         <option name="request_tcp_interface" default-value="10.29.4.0/24"/>
@@ -19,7 +20,6 @@
       </options>
       <options type="source">
         <option name="transport" default-value="lbtrm"/>
-        <option name="transport_lbtrm_sm_maximum_interval" default-value="2000"/>
         <option name="implicit_batching_minimum_length" default-value="1"/>
         <option name="retransmit_retention_size_limit" default-value="71000000"/>
         <option name="ume_message_stability_timeout" default-value="0"/>
@@ -31,26 +31,32 @@
       </options>
     </template>
     <template name="res_trd1">
+      <!-- For DRO endpoint TRD1. -->
       <options type="context">
         <option name="resolver_service" default-value="10.29.4.101:12601"/>
         <option name="resolver_disable_udp_topic_resolution" default-value="1"/>
       </options>
     </template>
     <template name="res_trd2">
+      <!-- For DRO endpoint TRD2. -->
       <options type="context">
         <option name="resolver_multicast_interface" default-value="10.29.4.0/24"/>
         <option name="resolver_multicast_address" default-value="239.101.3.1"/>
       </options>
     </template>
-    <template name="um_mon">
+    <template name="automonitor">
+      <!-- Additional application configuration to enable automatic monitoring. -->
       <options type="context">
         <option name="monitor_format" default-value="pb"/>
+        <!-- This value is set artificially low for testing. A more typical
+             deployment might use 600 seconds (10 minutes) to reduce load. -->
         <option name="monitor_interval" default-value="5"/>
         <option name="monitor_transport" default-value="lbm"/>
       </options>
     </template>
     <template name="mon_ctx">
-      <!-- These setting should match srs.xml <daemon-monitor> settings. -->
+      <!-- Configuration for the automatic monitoring context. Configures monitoring data.
+           These setting should match srs.xml <daemon-monitor> settings. -->
       <options type="context">
         <option name="resolver_unicast_daemon" default-value="10.29.3.101:12801"/>
         <option name="default_interface" default-value="10.29.3.0/24"/>
@@ -69,8 +75,9 @@
 
   <applications>
     <application name="umesrc">
+      <!-- User application. -->
       <contexts>
-        <context template="um_common,um_mon,res_trd1">
+        <context template="mytemplate,automonitor,res_trd1">
           <sources>
             <topic topicname="topic1">
               <options type="source">
@@ -80,6 +87,7 @@
             </topic>
           </sources>
         </context>
+        <!-- Context created by automatic monitoring. -->
         <context name="29west_statistics_context" template="mon_ctx">
           <sources/>
         </context>
@@ -87,10 +95,12 @@
     </application>
 
     <application name="umercv">
+      <!-- User application. -->
       <contexts>
-        <context template="um_common,um_mon,res_trd2">
+        <context template="mytemplate,automonitor,res_trd2">
           <sources/>
         </context>
+        <!-- Context created by automatic monitoring. -->
         <context name="29west_statistics_context" template="mon_ctx">
           <sources/>
         </context>
@@ -99,7 +109,7 @@
 
     <application name="tnwgd">
       <contexts>
-        <context name="TRD1" template="um_common,res_trd1">
+        <context name="TRD1" template="mytemplate,res_trd1">
           <sources>
             <topic topicname="topic1">
               <options type="source">
@@ -108,7 +118,7 @@
             </topic>
           </sources>
         </context>
-        <context name="TRD2" template="um_common,res_trd2">
+        <context name="TRD2" template="mytemplate,res_trd2">
           <sources>
             <topic topicname="topic1">
               <options type="source">
@@ -117,17 +127,19 @@
             </topic>
           </sources>
         </context>
+        <!-- Context created by automatic monitoring. -->
         <context name="29west_statistics_context" template="mon_ctx">
           <sources/>
         </context>
       </contexts>
     </application>
 
-    <application name="umestored">
+    <application name="store1">
       <contexts>
-        <context name="store_topic1" template="um_common,um_mon,res_trd1">
+        <context name="store_topic1" template="mytemplate,automonitor,res_trd1">
           <sources/>
         </context>
+        <!-- Context created by automatic monitoring. -->
         <context name="29west_statistics_context" template="mon_ctx">
           <sources/>
         </context>
@@ -136,6 +148,7 @@
 
     <application name="mcs">
       <contexts>
+        <!-- Context created by automatic monitoring. -->
         <context name="29west_statistics_context" template="mon_ctx">
           <sources/>
         </context>
@@ -144,6 +157,7 @@
 
     <application name="lbmmon">
       <contexts>
+        <!-- Context created by automatic monitoring. -->
         <context name="29west_statistics_context" template="mon_ctx">
           <sources/>
         </context>

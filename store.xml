@@ -3,12 +3,13 @@
     <web-monitor>*:12811</web-monitor>
     <log type="console"/>
     <pidfile>store.pid</pidfile>
-    <xml-config>um.xml</xml-config>
+    <xml-config application-name="store1">um.xml</xml-config>
   </daemon>
 
   <stores>
     <store name="store_topic1" interface="10.29.4.0/24" port="12801">
       <ume-attributes>
+        <option type="lbm-context" name="monitor_appid" value="store_appid_topic1"/>
         <option type="store" name="disk-cache-directory" value="cache"/>
         <option type="store" name="disk-state-directory" value="state"/>
         <option type="store" name="context-name" value="store_topic1"/>
