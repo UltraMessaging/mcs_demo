@@ -5,7 +5,6 @@
       <!-- Put your application configurations here. -->
       <options type="context">
         <option name="default_interface" default-value="10.29.4.0/24"/>
-        <option name="request_tcp_interface" default-value="10.29.4.0/24"/>
         <option name="mim_incoming_address" default-value="0.0.0.0"/>
         <option name="transport_lbtrm_data_rate_limit" default-value="100000000000"/>
         <option name="transport_lbtrm_receiver_socket_buffer" default-value="128000000"/>
@@ -65,7 +64,6 @@
         <option name="resolver_unicast_port_low" default-value="12802"/>
         <option name="resolver_unicast_port_high" default-value="12809"/>
         <option name="request_tcp_reuseaddr" default-value="1"/>
-        <option name="resolver_disable_udp_topic_resolution" default-value="0"/>
       </options>
       <options type="source">
         <option name="transport" default-value="tcp"/>
