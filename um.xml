@@ -39,7 +39,7 @@
     <template name="res_trd2">
       <!-- For DRO endpoint TRD2. -->
       <options type="context">
-        <option name="resolver_multicast_interface" default-value="10.29.4.0/24"/>
+        <option name="default_interface" default-value="10.29.4.0/24"/>
         <option name="resolver_multicast_address" default-value="239.101.3.1"/>
       </options>
     </template>
@@ -55,11 +55,10 @@
     </template>
     <template name="mon_ctx">
       <!-- Configuration for the automatic monitoring context. Configures monitoring data.
-           These setting should match srs.xml <daemon-monitor> settings. -->
+           These setting are replicated in "srs.xml". -->
       <options type="context">
         <option name="resolver_unicast_daemon" default-value="10.29.3.101:12801"/>
         <option name="default_interface" default-value="10.29.3.0/24"/>
-        <option name="request_tcp_interface" default-value="10.29.3.0/24"/>
         <option name="mim_incoming_address" default-value="0.0.0.0"/>
         <option name="resolver_unicast_port_low" default-value="12802"/>
         <option name="resolver_unicast_port_high" default-value="12809"/>

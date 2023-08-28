@@ -1,0 +1,27 @@
+LOG Level 6: Core-7911-1: Onload extensions API has been dynamically loaded
+Allowing 100000 in-flight message(s).
+Group None: Number of Stores 1
+ Store 0: "store_topic1" 
+Not using UME Late Join.
+Not using UME Confirmed Delivery Notification.
+Using UME Message Stability Notification.  Will not display events. 
+LOG Level 7: Core-10403-150: Context (0x1c32890) created with ContextID (4284752248) and ContextName [29west_statistics_context]
+LOG Level 7: Core-10403-151: Reactor Only Context (0x1cc4ef0) created with ContextID (1198399718) and ContextName [(NULL)]
+LOG Level 7: Core-10403-150: Context (0x1b3a150) created with ContextID (675497965) and ContextName []
+LOG Level 7: Core-10403-08: SRS Controller Connection (0x1b96d40) SID (0x308ab711) received the initial connection from the Server (10.29.4.101:12601) Local Addr (10.29.4.101:43279) for ContextID (675497965)
+LOG Level 7: Core-5688-2986: INFO: Source "topic1" Late Join not set, but UME store and/or UMQ queue specified. Setting Late Join.
+Delaying for 1 second
+LOG Level 7: Core-6259-2: Route discovered to Domain ID 2 through 10.29.4.101:14392
+LOG Level 7: Core-10403-34: Domain ID discovered via SRS Controller (0x1b96c40); context resides in Domain ID 1.
+Sending 30 messages of size 700 bytes to topic [topic1]
+Send unsuccessful. Waiting...
+Send unsuccessful. Waiting...
+UME store 0: 0:10.29.4.101:12801 registration success. RegID 2397614672. Flags 0x0 
+UME registration complete. SQN 0. Flags 0x0 
+Send OK. Continuing.
+Sent 30 messages of size 700 bytes in 32.03 seconds.
+32.03 secs. 0.0009368 Kmsgs/sec. 5.246 Kbps
+LBT-RM, sent 53/23964, txw 53/23964, naks 0/0, ignored 0/0, shed 0, rxs 0, rctlr 0/0, app sent 30 stable 30 inflight 0
+Lingering for 6 seconds...
+Deleting source
+Deleting context

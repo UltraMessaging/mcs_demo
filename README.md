@@ -6,19 +6,22 @@ Also contains an updated version of the "lbmmon.java" example app.
 
 # Table of contents
 
-- [mcs_demo](#mcs_demo)
-- [Table of contents](#table-of-contents)
-- [COPYRIGHT AND LICENSE](#copyright-and-license)
-- [REPOSITORY](#repository)
-- [INTRODUCTION](#introduction)
-  - [Prerequisits](#prerequisits)
-  - [Configuration Goals](#configuration-goals)
-- [Demo Architecture](#demo-architecture)
-- [Demo Files](#demo-files)
-- [Run the Demo](#run-the-demo)
-  - [Sqlite Database](#sqlite-database)
-
-<sup>(table of contents from https://luciopaiva.com/markdown-toc/)</sup>
+<!-- mdtoc-start -->
+&DoubleRightArrow; [mcs_demo](#mcs_demo)  
+&DoubleRightArrow; [Table of contents](#table-of-contents)  
+&DoubleRightArrow; [COPYRIGHT AND LICENSE](#copyright-and-license)  
+&DoubleRightArrow; [REPOSITORY](#repository)  
+&DoubleRightArrow; [INTRODUCTION](#introduction)  
+&nbsp;&nbsp;&DoubleRightArrow; [Prerequisits](#prerequisits)  
+&nbsp;&nbsp;&DoubleRightArrow; [Configuration Goals](#configuration-goals)  
+&DoubleRightArrow; [Demo Architecture](#demo-architecture)  
+&DoubleRightArrow; [Demo Files](#demo-files)  
+&DoubleRightArrow; [Run the Demo](#run-the-demo)  
+&nbsp;&nbsp;&DoubleRightArrow; [Sqlite Database](#sqlite-database)  
+&DoubleRightArrow; [Output Files](#output-files)  
+&DoubleRightArrow; [Lbmmon.java Output](#lbmmonjava-output)  
+<!-- TOC created by '../mdtoc/mdtoc.pl README.md' (see https://github.com/fordsfords/mdtoc) -->
+<!-- mdtoc-end -->
 
 # COPYRIGHT AND LICENSE
 
@@ -61,11 +64,12 @@ Service (MCS) and a modified version of the "lbmmon.java" example app.
 
 You must have the following:
 * Linux 64-bit system (reasonably recent).
-* UMP or UMQ version 6.15 or beyond.
+* UMP or UMQ version 6.15 or beyond. (Only need UMP for the demo because it demonstrates collecting Store daemon stats.)
 * Java JDK 9 or beyond.
 * sqlite (reasonably recent).
+* Optional: python (to run "peek.sh").
 
-(Running this demo on Windows is straight-forward,
+(Running this demo manually on Windows is reasonably straight-forward,
 but beyond the scope of this demo.)
 
 ## Configuration Goals
@@ -112,7 +116,10 @@ and printing monitoring data.
 1. Ensure your test system has the [prereqisits](#prerequisits).
 1. Clone or download the repository at https://github.com/UltraMessaging/mcs_demo
 1. Copy the file "lbm.sh.example" to "lbm.sh" and modify per your environment.
+Note that this demo assumes there are two networks, one for application data
+(10.29.4) and the other for monitoring data (10.29.3).
 I.e. insert your license key and set your file paths.
+1. Edit "um.xml" and update IP addresses (search for "10\.29").
 1. Enter:
 ````
 ./tst.sh
@@ -159,3 +166,16 @@ select * from umpmonmsg;
 select * from dromonmsg;
 select * from srsmonmsg;
 ````
+
+# Output Files
+
+The "output" directory has a sample of the output from running the demo
+in the Ultra Messaging lab.
+
+# Lbmmon.java Output
+
+The "lbmmon.java" program prints statistics in human-readable form.
+However, if you write your own monitoring collector program,
+you will probably want to access the statistics individually.
+See [displayString.md](displayString.md) to see the field methods
+associated with each human-readable output line.

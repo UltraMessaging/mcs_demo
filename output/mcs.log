@@ -1,0 +1,17 @@
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF8
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF8
+2023-08-28 17:01:06 INFO  - MCS-10995-1: Ultra Messaging Monitoring Collector Service Version: 6.15 Build: Oct 24 2022, 12:00:21(CDT) Java Version: 11.0.2
+2023-08-28 17:01:06 INFO  - MCS-10995-2: LBM Version: UMP 6.15 [UMP-6.15] [64-bit] Build: Oct 24 2022, 12:01:20 ( DEBUG license LBT-RM LBT-RU LBT-IPC LBT-SMX ) WC[PCRE 7.4 2007-09-21, regex, appcb] HRT[gettimeofday()]
+2023-08-28 17:01:06 INFO  - MCS-10995-3: (C) Copyright 2004,2022 Informatica LLC
+	This software and documentation are provided only under a separate license agreement containing restrictions on use and disclosure.
+	This software is protected by patents as detailed at https://www.informatica.com/legal/patents.html.
+	A current list of Informatica trademarks is available on the web at https://www.informatica.com/trademarks.html.
+Core-7911-1: Onload extensions API has been dynamically loaded
+2023-08-28 17:01:06 INFO  - MCS-10995-1000: Opening SQLite DB mcs.db
+2023-08-28 17:01:06 INFO  - Core-10403-150: Context (0x7fe0d9c64e10) created with ContextID (3459130763) and ContextName [29west_statistics_context]
+2023-08-28 17:01:07 INFO  - Core-10995-140: [LBMMON] Topic[/29west/statistics] Source[TCP:10.29.3.101:14371:ac80ff89[106250974]], Beginning of Transport Session
+2023-08-28 17:01:07 INFO  - Core-10995-140: [LBMMON] Topic[/29west/statistics] Source[TCP:10.29.3.101:14372:37809379[2343428129]], Beginning of Transport Session
+2023-08-28 17:01:09 INFO  - Core-10995-140: [LBMMON] Topic[/29west/statistics] Source[TCP:10.29.3.101:14373:ccc5d427[4167349521]], Beginning of Transport Session
+2023-08-28 17:01:13 INFO  - Core-10995-140: [LBMMON] Topic[/29west/statistics] Source[TCP:10.29.3.101:14374:2f645cd9[3597855935]], Beginning of Transport Session
+2023-08-28 17:01:19 INFO  - Core-10995-140: [LBMMON] Topic[/29west/statistics] Source[TCP:10.29.3.101:14375:a142f6ea[1070080134]], Beginning of Transport Session
+2023-08-28 17:01:52 INFO  - Core-10995-141: [LBMMON] Topic[/29west/statistics] Source[TCP:10.29.3.101:14374:2f645cd9[3597855935]], End of Transport Session

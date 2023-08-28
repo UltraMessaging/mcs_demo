@@ -2,14 +2,13 @@
 x
 x.*
 *.x
+*.bak
 *.tmp
 tmp.*
 *.tmp[0-9]
 ~*
 .DS_Store
 lbm.sh
-*.log
-*.out
 *.class
 
 # Prerequisites
@@ -44,7 +43,6 @@ lbm.sh
 
 # Executables
 *.exe
-*.out
 *.app
 *.i*86
 *.x86_64

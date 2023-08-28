@@ -1,0 +1,23 @@
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF8
+Mon Aug 28 17:01:06 CDT 2023 [INFO]: SRS-10386-1: Ultra Messaging Stateful Resolution Service Version: 6.15
+Mon Aug 28 17:01:06 CDT 2023 [INFO]: SRS-10386-2: SRS Protocol Version: 3, Build: Oct 24 2022, 12:00:20(CDT), Java Version: 11.0.2
+Mon Aug 28 17:01:06 CDT 2023 [INFO]: SRS-10386-3: LBM Version: UMP 6.15 [UMP-6.15] [64-bit] Build: Oct 24 2022, 12:01:20 ( DEBUG license LBT-RM LBT-RU LBT-IPC LBT-SMX ) WC[PCRE 7.4 2007-09-21, regex, appcb] HRT[gettimeofday()]
+Mon Aug 28 17:01:06 CDT 2023 [INFO]: SRS-10761-1: (C) Copyright 2004,2022 Informatica LLC
+	This software and documentation are provided only under a separate license agreement containing restrictions on use and disclosure.
+	This software is protected by patents as detailed at https://www.informatica.com/legal/patents.html.
+	A current list of Informatica trademarks is available on the web at https://www.informatica.com/trademarks.html.
+Core-7911-1: Onload extensions API has been dynamically loaded
+Mon Aug 28 17:01:06 CDT 2023 [INFO]: Core-10403-150: Context (0x7f8d99bfc510) created with ContextID (2095891864) and ContextName [(NULL)]
+Mon Aug 28 17:01:07 CDT 2023 [INFO]: Slf4jLogger started
+Mon Aug 28 17:01:07 CDT 2023 [INFO]: SRS-10386-1403: Daemon monitor sending monitor info messages on topic: /29west/statistics
+Mon Aug 28 17:01:07 CDT 2023 [INFO]: SRS-10386-6: SRS Server IP address: 10.29.4.101 port: 12601
+Mon Aug 28 17:01:08 CDT 2023 [INFO]: SRS-10385-98: Registration protocolVersion[3] received for client[10.29.4.101:49738] sessionID[0x7fb77cf8]
+Mon Aug 28 17:01:08 CDT 2023 [INFO]: SRS-10385-98: Registration protocolVersion[3] received for client[10.29.4.101:58443] sessionID[0x992fe452]
+Mon Aug 28 17:01:09 CDT 2023 [INFO]: SRS-10385-98: Registration protocolVersion[3] received for client[10.29.4.101:57415] sessionID[0x650a737b]
+Mon Aug 28 17:01:09 CDT 2023 [INFO]: SRS-10385-98: Registration protocolVersion[3] received for client[10.29.4.101:45134] sessionID[0xdc7a8209]
+Mon Aug 28 17:01:13 CDT 2023 [INFO]: SRS-10385-98: Registration protocolVersion[3] received for client[10.29.4.101:43279] sessionID[0x308ab711]
+Mon Aug 28 17:01:52 CDT 2023 [INFO]: SRS-10385-99: TCP Disconnect received for client[10.29.4.101:43279] sessionID[0x308ab711]
+Mon Aug 28 17:02:28 CDT 2023 [INFO]: SRS-10385-99: TCP Disconnect received for client[10.29.4.101:45134] sessionID[0xdc7a8209]
+Mon Aug 28 17:02:28 CDT 2023 [INFO]: SRS-10385-99: TCP Disconnect received for client[10.29.4.101:49738] sessionID[0x7fb77cf8]
+Mon Aug 28 17:02:28 CDT 2023 [INFO]: SRS-10385-99: TCP Disconnect received for client[10.29.4.101:58443] sessionID[0x992fe452]
+Mon Aug 28 17:02:28 CDT 2023 [INFO]: SRS-10385-99: TCP Disconnect received for client[10.29.4.101:57415] sessionID[0x650a737b]

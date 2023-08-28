@@ -1,0 +1,8 @@
+Mon Aug 28 17:01:05 2023 [NOTICE]: Core-7911-1: Onload extensions API has been dynamically loaded
+Mon Aug 28 17:01:05 2023 [INFO]: Lbmrd-10761-01: Ultra Messaging Resolver version 6.15
+Mon Aug 28 17:01:05 2023 [INFO]: Lbmrd-10761-02: UMP 6.15 [UMP-6.15] [64-bit] Build: Oct 24 2022, 12:01:20 ( DEBUG license LBT-RM LBT-RU LBT-IPC LBT-SMX ) WC[PCRE 7.4 2007-09-21, regex, appcb] HRT[gettimeofday()]
+Mon Aug 28 17:01:05 2023 [INFO]: Lbmrd-10761-03: (C) Copyright 2004,2022 Informatica LLC
+	This software and documentation are provided only under a separate license agreement containing restrictions on use and disclosure.
+	This software is protected by patents as detailed at https://www.informatica.com/legal/patents.html.
+	A current list of Informatica trademarks is available on the web at https://www.informatica.com/trademarks.html.
+Mon Aug 28 17:01:05 2023 [INFO]: Lbmrd-10492-1: Using interface [10.29.3.101] 

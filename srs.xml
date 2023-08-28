@@ -15,7 +15,8 @@
       <default>5000</default>
     </publishing-interval>
     <lbm-attributes>
-      <!-- These setting should match um.xml template "mon_ctx". -->
+      <!-- Configuration for the automatic monitoring context. Configures monitoring data.
+           These setting should match um.xml template "mon_ctx". -->
       <option scope="context" name="resolver_unicast_daemon" value="10.29.3.101:12801"/>
       <option scope="context" name="default_interface" value="10.29.3.0/24"/>
       <option scope="context" name="request_tcp_interface" value="10.29.3.0/24"/>

@@ -1,0 +1,37 @@
+Daemon log entity unspecified. Defaulting to console 
+[2023-08-28 17:01:07.308696] [notice] Core-7911-1: Onload extensions API has been dynamically loaded
+
+[2023-08-28 17:01:07.308729] [information] Gwd-7136-1: Ultra Messaging Gateway version 6.15
+[2023-08-28 17:01:07.308742] [information] Gwd-7136-2: UMP 6.15 [UMP-6.15] [64-bit] Build: Oct 24 2022, 12:01:20 ( DEBUG license LBT-RM LBT-RU LBT-IPC LBT-SMX ) WC[PCRE 7.4 2007-09-21, regex, appcb] HRT[gettimeofday()]
+[2023-08-28 17:01:07.308750] [information] Gwd-10761-01: (C) Copyright 2004,2022 Informatica LLC
+	This software and documentation are provided only under a separate license agreement containing restrictions on use and disclosure.
+	This software is protected by patents as detailed at https://www.informatica.com/legal/patents.html.
+	A current list of Informatica trademarks is available on the web at https://www.informatica.com/trademarks.html.
+
+[2023-08-28 17:01:07.339105] [information] Core-10403-150: Context (0x27be6e0) created with ContextID (3982041435) and ContextName [29west_statistics_context]
+
+[2023-08-28 17:01:07.339793] [information] Core-10403-151: Reactor Only Context (0x2848bf0) created with ContextID (280861425) and ContextName [(NULL)]
+
+[2023-08-28 17:01:07.340186] [information] Core-10403-151: Reactor Only Context (0x2861c60) created with ContextID (1471145301) and ContextName [(NULL)]
+
+[2023-08-28 17:01:07.344830] [information] Core-10403-150: Context (0x287b5c0) created with ContextID (408865376) and ContextName [TRD1]
+
+[2023-08-28 17:01:07.347668] [information] Core-10403-150: Context (0x2972d30) created with ContextID (4029060116) and ContextName [TRD1]
+
+[2023-08-28 17:01:07.348451] [information] Gwd-9574-01: RecalcTrigger:LINK CAME UP:Version = 1:NodeId = 1
+
+[2023-08-28 17:01:07.350867] [information] Core-10403-150: Context (0x2aa50e0) created with ContextID (1864725709) and ContextName [TRD2]
+
+[2023-08-28 17:01:07.352904] [information] Core-10403-150: Context (0x2b260b0) created with ContextID (1838589788) and ContextName [TRD2]
+
+[2023-08-28 17:01:07.353636] [information] Gwd-9574-01: RecalcTrigger:LINK CAME UP:Version = 2:NodeId = 2
+
+[2023-08-28 17:01:07.354086] [information] Gwd-7122-1: Gateway named [dro1] with node id: 1277164139609339393 has started.
+[2023-08-28 17:01:08.295505] [warning] THROTTLED MSG: Core-10403-04: SRS Controller (0x29cdc00) SID (0x7fb77cf8) for ContextID (4029060116) is unable to connect to any configured Server
+
+[2023-08-28 17:01:08.480898] [information] Core-10403-08: SRS Controller Connection (0x29cdd00) SID (0x7fb77cf8) received the initial connection from the Server (10.29.4.101:12601) Local Addr (10.29.4.101:49738) for ContextID (4029060116)
+
+[2023-08-28 17:01:08.480996] [information] Core-10403-08: SRS Controller Connection (0x28d8b30) SID (0x992fe452) received the initial connection from the Server (10.29.4.101:12601) Local Addr (10.29.4.101:58443) for ContextID (408865376)
+
+[2023-08-28 17:01:12.606251] [information] Gwd-6361-74: route recalculation took 0.000095 seconds
+[2023-08-28 17:02:28.511524] [information] Gwd-6033-391: Shutdown event detected. Attempting to shutdown

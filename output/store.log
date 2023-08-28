@@ -1,0 +1,58 @@
+Daemon log entity unspecified. Defaulting to console
+Mon Aug 28 17:01:09 2023 [NOTICE]: Core-7911-1: Onload extensions API has been dynamically loaded
+Mon Aug 28 17:01:09 2023 [INFO]: Store-5688-5273: Latency Busters Persistent Store version 6.15
+Mon Aug 28 17:01:09 2023 [INFO]: Store-5688-5274: UMP 6.15 [UMP-6.15] [64-bit] Build: Oct 24 2022, 12:01:20 ( DEBUG license LBT-RM LBT-RU LBT-IPC LBT-SMX ) WC[PCRE 7.4 2007-09-21, regex, appcb] HRT[gettimeofday()]
+Mon Aug 28 17:01:09 2023 [INFO]: Store-10761-01: (C) Copyright 2004,2022 Informatica LLC
+	This software and documentation are provided only under a separate license agreement containing restrictions on use and disclosure.
+	This software is protected by patents as detailed at https://www.informatica.com/legal/patents.html.
+	A current list of Informatica trademarks is available on the web at https://www.informatica.com/trademarks.html.
+Mon Aug 28 17:01:09 2023 [INFO]: Store-5688-5268: Linux mamba 3.10.0-1160.36.2.el7.x86_64 #1 SMP Wed Jul 21 11:57:15 UTC 2021 x86_64
+Mon Aug 28 17:01:09 2023 [WARNING]: Store-5688-5445: WARNING: store "store_topic1" cache directory appears to be on an NFS mount. This is not recommended.
+Mon Aug 28 17:01:09 2023 [WARNING]: Store-5688-5447: WARNING: store "store_topic1" state directory appears to be on an NFS mount. This is not recommended.
+Mon Aug 28 17:01:09 2023 [INFO]: Store-10366-1: Created daemon monitor thread: id[140526779852544]
+Mon Aug 28 17:01:09 2023 [INFO]: Core-10403-151: Reactor Only Context (0x13d9ff0) created with ContextID (132854627) and ContextName [(NULL)]
+Mon Aug 28 17:01:09 2023 [INFO]: Store-8079-10: Starting store "store_topic1"
+Mon Aug 28 17:01:09 2023 [INFO]: Core-10403-150: Context (0x2bb9af0) created with ContextID (3767690088) and ContextName [29west_statistics_context]
+Mon Aug 28 17:01:09 2023 [INFO]: Core-10403-151: Reactor Only Context (0x3024aa0) created with ContextID (3674731637) and ContextName [(NULL)]
+Mon Aug 28 17:01:09 2023 [INFO]: Core-10403-150: Context (0x13d7f40) created with ContextID (919402852) and ContextName [store_topic1]
+Mon Aug 28 17:01:09 2023 [INFO]: Store-8079-1: Created context thread: id[140526735714048]
+Mon Aug 28 17:01:09 2023 [INFO]: Core-10403-150: Context (0x30eb190) created with ContextID (1439070749) and ContextName [store_topic1]
+Mon Aug 28 17:01:09 2023 [INFO]: Store-8079-2: Created proxy context thread: id[140526718928640]
+Mon Aug 28 17:01:09 2023 [INFO]: Store-8079-3: Created retransmission thread: id[140526441854720]
+Mon Aug 28 17:01:09 2023 [INFO]: Store-10682-2: Created auxiliary sending thread: id[140526433462016]
+Mon Aug 28 17:01:09 2023 [INFO]: Store-8079-7: Created proactor thread: id[140526425069312]
+Mon Aug 28 17:01:09 2023 [INFO]: Store-8223-4: Set RegID seed to 2397614672
+Mon Aug 28 17:01:09 2023 [INFO]: Store-5688-5543: Store "store_topic1" disk-cache-dir [cache], disk-state-dir [state]
+Mon Aug 28 17:01:09 2023 [INFO]: Core-10403-08: SRS Controller Connection (0x13a0470) SID (0x650a737b) received the initial connection from the Server (10.29.4.101:12601) Local Addr (10.29.4.101:57415) for ContextID (919402852)
+Mon Aug 28 17:01:09 2023 [INFO]: Store-8079-5: Created blocked io thread: id[140526416676608]
+Mon Aug 28 17:01:09 2023 [INFO]: Store-5688-5546: Store "store_topic1" ready to accept registrations
+Mon Aug 28 17:01:09 2023 [INFO]: Store-8079-4: Created the log offload thread: id[140526408283904]
+Mon Aug 28 17:01:09 2023 [INFO]: Core-10403-34: Domain ID discovered via SRS Controller (0x26d0530); context resides in Domain ID 1.
+Mon Aug 28 17:01:09 2023 [INFO]: Core-10403-08: SRS Controller Connection (0x13a0e00) SID (0xdc7a8209) received the initial connection from the Server (10.29.4.101:12601) Local Addr (10.29.4.101:45134) for ContextID (1439070749)
+Mon Aug 28 17:01:09 2023 [INFO]: Core-10403-34: Domain ID discovered via SRS Controller (0x26d0710); context resides in Domain ID 1.
+Mon Aug 28 17:01:12 2023 [INFO]: Core-6259-2: Route discovered to Domain ID 2 through 10.29.4.101:14392
+Mon Aug 28 17:01:12 2023 [INFO]: Core-6259-2: Route discovered to Domain ID 2 through 10.29.4.101:14392
+Mon Aug 28 17:01:16 2023 [INFO]: Store-5688-5284: store "store_topic1" new topic "topic1" created
+Mon Aug 28 17:01:16 2023 [INFO]: Store-5688-5286: store "store_topic1" new source for topic "topic1" created. Session ID 0 RegID 2397614672 Indices 2759408633.2651879322 [1 10.29.4.101.14396]
+Mon Aug 28 17:01:16 2023 [INFO]: Store-8000-100: store [store_topic1] PREG marker 0x80 RegID 0 Session ID 0 Indices 2759408633.2651879322 [10.29.4.101.14396] StoreID 0 L/T <-1 - 0> 
+Mon Aug 28 17:01:16 2023 [INFO]: Store-10807-100: store [store_topic1] PREG RESP SRC Session ID 0 RegID 2397614672 SQN[0:0]
+Mon Aug 28 17:01:16 2023 [INFO]: Store-9115-01: store "store_topic1" topic "topic1" source [LBTRM:10.29.4.101:14392:6f80ecc8:239.101.3.2:14400[2651879322]] BOS
+Mon Aug 28 17:01:16 2023 [INFO]: Store-9115-02: store "store_topic1" topic "topic1" source [LBTRM:10.29.4.101:14392:6f80ecc8:239.101.3.2:14400] Session ID 0 RegID 2397614672 SRI
+Mon Aug 28 17:01:22 2023 [INFO]: Store-5688-5292: store "store_topic1" new receiver for topic "topic1" Session ID 0 SRC RegID 2397614672 created. RCV Session ID 0 RCV RegID 2397615672 RPP Bit Not Set RCV is blocking store keepalives disabled Indices 4149901590.2628055334 not RPP[2 10.29.4.101.14397]
+Mon Aug 28 17:01:22 2023 [INFO]: Store-10807-100: store [store_topic1] PREG RESP RCV Session ID 0 RegID 2397615672 SQN[0:6]
+Mon Aug 28 17:01:52 2023 [INFO]: Store-9115-03: store "store_topic1" topic "topic1" source [LBTRM:10.29.4.101:14392:6f80ecc8:239.101.3.2:14400[2651879322]] Session ID 0 RegID 2397614672 EOS
+Mon Aug 28 17:02:19 2023 [INFO]: Store-5688-5294: store "store_topic1" RCV Session ID 0 RegID 2397615672 Indices 4149901590.2628055334 [2 10.29.4.101.14397] deleted
+Mon Aug 28 17:02:19 2023 [INFO]: Store-5688-5291: store "store_topic1" source Session ID 0 RegID 2397614672 Indices 2759408633.2651879322 [1 10.29.4.101.14396] deleted
+Mon Aug 28 17:02:19 2023 [INFO]: Store-5688-5285: store "store_topic1" topic "topic1" deleted
+Mon Aug 28 17:02:28 2023 [INFO]: Store-5688-5276: Shutdown requested; shutting down...
+Mon Aug 28 17:02:28 2023 [INFO]: Store-5688-5277: Shutting down web monitor...
+Mon Aug 28 17:02:28 2023 [INFO]: Store-5688-5278: Web monitor shut down.
+Mon Aug 28 17:02:28 2023 [INFO]: Store-5688-5547: Shutting down store "store_topic1"...
+Mon Aug 28 17:02:28 2023 [INFO]: Store-5688-5549: Store "store_topic1" shutting down proactor thread...
+Mon Aug 28 17:02:28 2023 [INFO]: Store-5688-5550: Store "store_topic1" proactor thread shut down.
+Mon Aug 28 17:02:28 2023 [INFO]: Store-5688-5551: Store "store_topic1" shutting down blocking IO thread...
+Mon Aug 28 17:02:28 2023 [INFO]: Store-5688-5552: Store "store_topic1" blocking IO thread shut down.
+Mon Aug 28 17:02:28 2023 [INFO]: Store-5688-5553: Store "store_topic1" shut down.
+Mon Aug 28 17:02:28 2023 [INFO]: Store-5688-5279: Shutting down async logging thread...
+Mon Aug 28 17:02:28 2023 [INFO]: Store-5688-5280: Async logging thread shut down.
+Mon Aug 28 17:02:28 2023 [INFO]: Store-5688-5281: Shutdown complete.
