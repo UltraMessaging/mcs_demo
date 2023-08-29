@@ -253,7 +253,7 @@ If this number grows by more than a few per hour, the operator should be alerted
 
 [LBT-RU source statistics](https://ultramessaging.github.io/currdoc/doc/API/structlbm__src__transport__stats__lbtru__t__stct.html):
 
-* [msgs_sent](https://ultramessaging.github.io/currdoc/doc/API/structlbm__src__transport__stats__lbtru__t__stct.html) -
+* [msgs_sent](https://ultramessaging.github.io/currdoc/doc/API/structlbm__src__transport__stats__lbtru__t__stct.html#a33977a0a14846929f481fa61b10a45fe) -
 Get an idea of how many datagrams/sec the transport session is generating for user messages (aggregates all topics on the transport session).
 * [naks_rcved](https://ultramessaging.github.io/currdoc/doc/API/structlbm__src__transport__stats__lbtru__t__stct.html#a9833ac2f8d6a9e6708a6848b641a6a4c) -
 Number of individual NAKs received (not NAK packets).
