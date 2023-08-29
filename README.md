@@ -20,6 +20,10 @@ Also contains an updated version of the "lbmmon.java" example app.
 &nbsp;&nbsp;&DoubleRightArrow; [Sqlite Database](#sqlite-database)  
 &DoubleRightArrow; [Output Files](#output-files)  
 &DoubleRightArrow; [Lbmmon.java Output](#lbmmonjava-output)  
+&DoubleRightArrow; [Important Stats Fields](#important-stats-fields)  
+&nbsp;&nbsp;&DoubleRightArrow; [[Context Stats](https://ultramessaging.github.io/currdoc/doc/API/structlbm__context__stats__t__stct.html):](#context-statshttpsultramessaginggithubiocurrdocdocapistructlbm__context__stats__t__stcthtml)  
+&nbsp;&nbsp;&DoubleRightArrow; [[Source Stats](https://ultramessaging.github.io/currdoc/doc/API/structlbm__src__transport__stats__t__stct.html):](#source-statshttpsultramessaginggithubiocurrdocdocapistructlbm__src__transport__stats__t__stcthtml)  
+&nbsp;&nbsp;&DoubleRightArrow; [[Receiver Stats](https://ultramessaging.github.io/currdoc/doc/API/structlbm__rcv__transport__stats__t__stct.html):](#receiver-statshttpsultramessaginggithubiocurrdocdocapistructlbm__rcv__transport__stats__t__stcthtml)  
 <!-- TOC created by '../mdtoc/mdtoc.pl README.md' (see https://github.com/fordsfords/mdtoc) -->
 <!-- mdtoc-end -->
 
