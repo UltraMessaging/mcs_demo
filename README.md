@@ -21,9 +21,9 @@ Also contains an updated version of the "lbmmon.java" example app.
 &DoubleRightArrow; [Output Files](#output-files)  
 &DoubleRightArrow; [Lbmmon.java Output](#lbmmonjava-output)  
 &DoubleRightArrow; [Important Stats Fields](#important-stats-fields)  
-&nbsp;&nbsp;&DoubleRightArrow; [[Context Stats](https://ultramessaging.github.io/currdoc/doc/API/structlbm__context__stats__t__stct.html):](#context-statshttpsultramessaginggithubiocurrdocdocapistructlbm__context__stats__t__stcthtml)  
-&nbsp;&nbsp;&DoubleRightArrow; [[Source Stats](https://ultramessaging.github.io/currdoc/doc/API/structlbm__src__transport__stats__t__stct.html):](#source-statshttpsultramessaginggithubiocurrdocdocapistructlbm__src__transport__stats__t__stcthtml)  
-&nbsp;&nbsp;&DoubleRightArrow; [[Receiver Stats](https://ultramessaging.github.io/currdoc/doc/API/structlbm__rcv__transport__stats__t__stct.html):](#receiver-statshttpsultramessaginggithubiocurrdocdocapistructlbm__rcv__transport__stats__t__stcthtml)  
+&nbsp;&nbsp;&DoubleRightArrow; [Context Stats](#context-stats)  
+&nbsp;&nbsp;&DoubleRightArrow; [Source Stats](#source-stats)  
+&nbsp;&nbsp;&DoubleRightArrow; [Receiver Stats](#receiver-stats)  
 <!-- TOC created by '../mdtoc/mdtoc.pl README.md' (see https://github.com/fordsfords/mdtoc) -->
 <!-- mdtoc-end -->
 
@@ -208,7 +208,7 @@ It sometimes happens that, while investigating a problme,
 the UM Support team will ask about a stat that the user weren't interested in;
 if they didn't save it, Support will have trouble diagnosing their problem.
 
-## [Context Stats](https://ultramessaging.github.io/currdoc/doc/API/structlbm__context__stats__t__stct.html):
+## [Context Stats](https://ultramessaging.github.io/currdoc/doc/API/structlbm__context__stats__t__stct.html)
 
 * [tr_dgrams_sent](https://ultramessaging.github.io/currdoc/doc/API/structlbm__context__stats__t__stct.html#af81b4e84e386bd78281c6ae10311bb88) -
 Get an idea of how many datagrams/sec the context is generating for topic resolution.
@@ -227,7 +227,7 @@ If this number grows by more than a few per hour, the operator should be alerted
 Approximately the number of unrecoverable loss events delivered to the application.
 If this number is greater than zero, the operator should be alerted.
 
-## [Source Stats](https://ultramessaging.github.io/currdoc/doc/API/structlbm__src__transport__stats__t__stct.html):
+## [Source Stats](https://ultramessaging.github.io/currdoc/doc/API/structlbm__src__transport__stats__t__stct.html)
 
 * [type](https://ultramessaging.github.io/currdoc/doc/API/structlbm__src__transport__stats__t__stct.html#a9f9aef06b06d3432b1b7ba10583413ce) -
 Transport type for this record.
@@ -275,7 +275,7 @@ Get an idea of how many datagrams/sec the transport session is generating for us
 * [num_clients](https://ultramessaging.github.io/currdoc/doc/API/structlbm__src__transport__stats__lbtsmx__t__stct.html#a23f7ba1e7a44b9223ef29f8bdfe0c570) -
 Number of receivers connected at the time the sample was taken.
 
-## [Receiver Stats](https://ultramessaging.github.io/currdoc/doc/API/structlbm__rcv__transport__stats__t__stct.html):
+## [Receiver Stats](https://ultramessaging.github.io/currdoc/doc/API/structlbm__rcv__transport__stats__t__stct.html)
 
 * [type](https://ultramessaging.github.io/currdoc/doc/API/structlbm__rcv__transport__stats__t__stct.html#a3111b4af23afc72ffb71b3794b4a0835) -
 Transport type for this record.
