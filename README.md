@@ -120,10 +120,9 @@ and printing monitoring data.
 1. Ensure your test system has the [prereqisits](#prerequisits).
 1. Clone or download the repository at https://github.com/UltraMessaging/mcs_demo
 1. Copy the file "lbm.sh.example" to "lbm.sh" and modify per your environment.
-Note that this demo assumes there are two networks, one for application data
-(10.29.4) and the other for monitoring data (10.29.3).
 I.e. insert your license key and set your file paths.
-1. Edit "um.xml" and update IP addresses (search for "10\.29").
+1. Edit all xml files and update IP addresses (search for "10.29").
+In particular, set the multicast groups per your network in "um.xml" (search for "239.101").
 1. Enter:
 ````
 ./tst.sh
