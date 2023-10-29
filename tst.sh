@@ -92,7 +92,7 @@ echo "`date` sleep 6"
 sleep 6
 
 # Start subscriber
-LBM_XML_CONFIG_APPNAME=umercv LBM_XML_CONFIG_FILENAME=um.xml umercv -v -v topic1 >umercv.log 2>&1 &
+LBM_XML_CONFIG_APPNAME=umercv LBM_XML_CONFIG_FILENAME=um.xml ./umercv -q -v -v topic1 >umercv.log 2>&1 &
 UMERCV_PID="$!"; echo "`date` UMERCV_PID=$UMERCV_PID"
 
 # Wait for publisher to complete.
