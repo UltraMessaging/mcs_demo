@@ -3,12 +3,17 @@
 
 kill_pids()
 {
-  echo "`date` kill $LBMRD_PID $MCS_PID $LBMMON_PID $SRS_PID $DRO_PID $STORE_PID $UMERCV_PID $UMESRC_PID"
-  kill $LBMRD_PID $MCS_PID $LBMMON_PID $SRS_PID $DRO_PID $STORE_PID $UMERCV_PID $UMESRC_PID
+  echo "`date` kill $LBMRD_PID $MCS_PID $SRS_PID $DRO_PID $STORE_PID $UMERCV_PID $UMESRC_PID"
+  kill $LBMRD_PID $MCS_PID $SRS_PID $DRO_PID $STORE_PID $UMERCV_PID $UMESRC_PID
 }
 
 if [ ! -f "lbm.sh" ]; then :
   echo "Must create 'lbm.sh' file (use 'lbm.sh.example' as guide)." >&2
+  exit 1
+fi
+
+if [ ! -f "JsonPrint.jar" ]; then :
+  echo "Must get 'JsonPrint.jar' (see https://github.com/UltraMessaging/mcs_json_print)." >&2
   exit 1
 fi
 
@@ -20,10 +25,6 @@ rm -rf cache state *.log *.pid *.out umercv
 gcc -Wall -I. -I$LBM/include -I $LBM/include/lbm -L$LBM/lib -llbm -lm -o umercv verifymsg.c umercv.c
 if [ "$?" -ne 0 ]; then echo "`date` Error" >&2; exit 1; fi
 
-# Build updated version of "lbmmon.java".
-javac -cp $L/MCS/lib/java-getopt-1.0.13.jar:$LBMJ/UMS_6.15.jar:$LBMJ/UMSMON_PROTO2_6.15.jar:$LBMJ/UMSMON_PROTO3_6.15.jar:$L/MCS/lib/protobuf-java-4.0.0-rc-2.jar:$L/MCS/lib/protobuf-java-util-4.0.0-rc-2.jar lbmmon.java >javac.log 2>&1
-if [ "$?" -ne 0 ]; then echo "`date` Error, see javac.log" >&2; exit 1; fi
-
 # Kill background processes on control-C.
 trap "kill_pids; exit 1" 1 2 3 15
 
@@ -31,24 +32,16 @@ trap "kill_pids; exit 1" 1 2 3 15
 lbmrd lbmrd.xml >lbmrd.log 2>&1 &
 LBMRD_PID="$!"; echo "`date` LBMRD_PID=$LBMRD_PID"
 
-# Create sqlite database for MCS.
-rm -f mcs.db
-echo "`date` sqlite3 mcs.db <$L/MCS/bin/ummon_db.sql >sqlite.log"
-sqlite3 mcs.db <$L/MCS/bin/ummon_db.sql >sqlite.log 2>&1
-if [ "$?" -ne 0 ]; then echo "`date` Error, see sqlite.log" >&2; kill_pids; exit 1; fi
+# Start Monitoring Collector Service (MCS) with the JsonPrint module.
+MCS_CMD="java -classpath $L/MCS/lib/MCS.jar:$L/MCS/lib/UMS_6.15.jar:$L/MCS/lib/UMSMON_PROTO3.jar:./JsonPrint.jar:$L/MCS/lib/um-mondb-common.jar:$L/MCS/lib/protobuf-java-util-4.0.0-rc-2.jar:$L/MCS/lib/protobuf-java-4.0.0-rc-2.jar:$L/MCS/lib/gson-2.8.5.jar:$L/MCS/lib/java-getopt-1.0.13.jar:$L/MCS/lib/log4j-api-2.14.1.jar:$L/MCS/lib/log4j-core-2.14.1.jar:$L/MCS/lib/guava-24.1.1-jre.jar com.informatica.um.monitoring.UMMonitoringCollector -Z$L/MCS/bin/ummon.db mcs.xml"
 
-# Start Monitoring Collector Service (MCS)
-LBM_XML_CONFIG_FILENAME=um.xml LBM_XML_CONFIG_APPNAME=mcs MCS mcs.xml >mcs.log 2>&1 &
+LBM_XML_CONFIG_FILENAME=um.xml LBM_XML_CONFIG_APPNAME=mcs $MCS_CMD >mcs.log 2>&1 &
 # Wait up to 5 seconds for MCS to create its PID file.
 for I in 1 2 3 4 5; do :
   if [ ! -f "mcs.pid" ]; then sleep 1; fi
 done
 if [ ! -f "mcs.pid" ]; then echo "`date` mcs fail?" >&2; kill_pids; exit 1; fi
 MCS_PID="`cat mcs.pid`"; echo "`date` MCS_PID=$MCS_PID"
-
-# Start "lbmmon" java example application
-LBM_XML_CONFIG_FILENAME=um.xml LBM_XML_CONFIG_APPNAME=lbmmon java -cp .:$L/MCS/lib/java-getopt-1.0.13.jar:$LBMJ/UMS_6.15.jar:$LBMJ/UMSMON_PROTO2_6.15.jar:$LBMJ/UMSMON_PROTO3_6.15.jar:$L/MCS/lib/protobuf-java-4.0.0-rc-2.jar:$L/MCS/lib/protobuf-java-util-4.0.0-rc-2.jar lbmmon --format=pb --format-opts="passthrough=convert" >lbmmon.log 2>&1 &
-LBMMON_PID="$!"; echo "`date` LBMMON_PID=$LBMMON_PID"
 
 # Start Stateful Resolver Service (SRS)
 SRS srs.xml >srs.log 2>&1 &
@@ -92,7 +85,7 @@ echo "`date` sleep 6"
 sleep 6
 
 # Start subscriber
-LBM_XML_CONFIG_APPNAME=umercv LBM_XML_CONFIG_FILENAME=um.xml umercv -v -v topic1 >umercv.log 2>&1 &
+LBM_XML_CONFIG_APPNAME=umercv LBM_XML_CONFIG_FILENAME=um.xml ./umercv -q -v -v topic1 >umercv.log 2>&1 &
 UMERCV_PID="$!"; echo "`date` UMERCV_PID=$UMERCV_PID"
 
 # Wait for publisher to complete.
@@ -100,24 +93,9 @@ echo "`date` wait $UMESRC_PID"
 wait $UMESRC_PID
 unset UMESRC_PID
 
-# Wait for subscriber to time out the publisher.
-echo "`date` sleep 36"
-sleep 36
+# Wait for subscriber to time out the publisher and drop transport.
+echo "`date` sleep 37"
+sleep 37
 
-kill_pids
+kill $LBMRD_PID $MCS_PID $SRS_PID $DRO_PID $STORE_PID $UMERCV_PID $UMESRC_PID
 
-# Give sqlite a chance to gracefully close tables.
-echo "`date` sleep 2"
-sleep 2
-
-# Extract monitoring data from MCS database.
-sqlite3 mcs.db <<__EOF__ >mcs.out 2>&1
-select * from umsmonmsg;
-select * from umpmonmsg;
-select * from dromonmsg;
-select * from srsmonmsg;
-__EOF__
-if [ "$?" -ne 0 ]; then echo "`date` Error, see mcs.out" >&2; exit 1; fi
-
-echo "See 'mcs.out' for full SQLite database dump."
-echo "Also use 'peek.sh' to pretty-print a few select records."

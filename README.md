@@ -7,23 +7,23 @@ Also contains an updated version of the "lbmmon.java" example app.
 # Table of contents
 
 <!-- mdtoc-start -->
-&DoubleRightArrow; [mcs_demo](#mcs_demo)  
-&DoubleRightArrow; [Table of contents](#table-of-contents)  
-&DoubleRightArrow; [COPYRIGHT AND LICENSE](#copyright-and-license)  
-&DoubleRightArrow; [REPOSITORY](#repository)  
-&DoubleRightArrow; [INTRODUCTION](#introduction)  
-&DoubleRightArrow;&nbsp;&DoubleRightArrow; [Prerequisits](#prerequisits)  
-&DoubleRightArrow;&nbsp;&DoubleRightArrow; [Configuration Goals](#configuration-goals)  
-&DoubleRightArrow; [Demo Architecture](#demo-architecture)  
-&DoubleRightArrow; [Demo Files](#demo-files)  
-&DoubleRightArrow; [Run the Demo](#run-the-demo)  
-&DoubleRightArrow;&nbsp;&DoubleRightArrow; [Sqlite Database](#sqlite-database)  
-&DoubleRightArrow; [Output Files](#output-files)  
-&DoubleRightArrow; [Lbmmon.java Output](#lbmmonjava-output)  
-&DoubleRightArrow; [Important Stats Fields](#important-stats-fields)  
-&DoubleRightArrow;&nbsp;&DoubleRightArrow; [Context Stats](#context-stats)  
-&DoubleRightArrow;&nbsp;&DoubleRightArrow; [Source Stats](#source-stats)  
-&DoubleRightArrow;&nbsp;&DoubleRightArrow; [Receiver Stats](#receiver-stats)  
+&bull; [mcs_demo](#mcs_demo)  
+&bull; [Table of contents](#table-of-contents)  
+&bull; [COPYRIGHT AND LICENSE](#copyright-and-license)  
+&bull; [REPOSITORY](#repository)  
+&bull; [INTRODUCTION](#introduction)  
+&nbsp;&nbsp;&nbsp;&nbsp;&bull; [Prerequisits](#prerequisits)  
+&nbsp;&nbsp;&nbsp;&nbsp;&bull; [Configuration Goals](#configuration-goals)  
+&bull; [Demo Architecture](#demo-architecture)  
+&bull; [Demo Files](#demo-files)  
+&bull; [Run the Demo](#run-the-demo)  
+&nbsp;&nbsp;&nbsp;&nbsp;&bull; [Sqlite Database](#sqlite-database)  
+&bull; [Output Files](#output-files)  
+&bull; [Lbmmon.java Output](#lbmmonjava-output)  
+&bull; [Important Stats Fields](#important-stats-fields)  
+&nbsp;&nbsp;&nbsp;&nbsp;&bull; [Context Stats](#context-stats)  
+&nbsp;&nbsp;&nbsp;&nbsp;&bull; [Source Stats](#source-stats)  
+&nbsp;&nbsp;&nbsp;&nbsp;&bull; [Receiver Stats](#receiver-stats)  
 <!-- TOC created by '../mdtoc/mdtoc.pl README.md' (see https://github.com/fordsfords/mdtoc) -->
 <!-- mdtoc-end -->
 
@@ -62,13 +62,24 @@ UM daemons (Store, DRO, etc.).
 
 This repository has a script and configuration files to demonstrate
 UM's automatic monitoring capability using the Monitoring Collector
-Service (MCS) and a modified version of the "lbmmon.java" example app.
+Service (MCS).
+The script is designed to provide all the types of monitoring data
+from UM services and pub/sub applications.
+
+This repository also contains two enhancements to existing UM
+exmaple applications:
+* lbmmon.java - enhanced to understand SRS monitoring data.
+* umercv.c - enhanced to enable the use of a UM event queue.
+
+Finally, there is another demo under the sub-directory "json_print"
+that uses a user-written plug-in instead of the "sqlite" database.
 
 ## Prerequisits
 
 You must have the following:
 * Linux 64-bit system (reasonably recent).
-* UMP or UMQ version 6.15 or beyond. (Only need UMP for the demo because it demonstrates collecting Store daemon stats.)
+* UMP or UMQ version 6.15 or beyond.
+* DRO 6.15 or beyond.
 * Java JDK 9 or beyond.
 * sqlite (reasonably recent).
 * Optional: python (to run "peek.sh").

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<um-mcs version="1.0">
+  <daemon>
+    <log type="console"/>
+    <pid-file>mcs.pid</pid-file>
+  </daemon>
+  <connector>
+    <type>class:JsonPrint</type>
+    <properties-file>mcs.properties</properties-file>
+  </connector>
+</um-mcs>
