@@ -64,11 +64,12 @@ Instead, the proper Java command is inserted directly in "tst.sh" to run it.
 
 1. Clone or download the repository at https://github.com/UltraMessaging/mcs_demo
 2. cd to json_print
-3. Copy the file "lbm.sh.example" to "lbm.sh" and modify per your environment.
+3. Copy your "JsonPrint.jar" to here (see https://github.com/UltraMessaging/mcs_json_print).
+4. Copy the file "lbm.sh.example" to "lbm.sh" and modify per your environment.
 I.e. insert your license key and set your file paths.
-4. Edit all xml files and update IP addresses (search for "10.29").
+5. Edit all xml files and update IP addresses (search for "10.29").
 In particular, set the multicast groups per your network in "um.xml" (search for "239.101").
-5. Enter:
+6. Enter:
 ````
 ./tst.sh
 ````
