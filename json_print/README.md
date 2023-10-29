@@ -6,7 +6,12 @@ https://github.com/UltraMessaging/mcs_json_print
 # Table of contents
 
 <!-- mdtoc-start -->
-<!-- TOC created by '../mdtoc/mdtoc.pl README.md' (see https://github.com/fordsfords/mdtoc) -->
+&bull; [mcs_demo/json_print](#mcs_demojson_print)  
+&bull; [Table of contents](#table-of-contents)  
+&bull; [COPYRIGHT AND LICENSE](#copyright-and-license)  
+&bull; [REPOSITORY](#repository)  
+&bull; [INTRODUCTION](#introduction)  
+<!-- TOC created by '../mdtoc/mdtoc.pl ./json_print/README.md' (see https://github.com/fordsfords/mdtoc) -->
 <!-- mdtoc-end -->
 
 # COPYRIGHT AND LICENSE

@@ -1,7 +1,7 @@
 #!/bin/sh
 # bld.sh - construct table of contents for each page
 
-for F in *.md; do :
+for F in `find . -name '*.md' -print`; do :
   if egrep "<!-- mdtoc-start -->" $F >/dev/null; then :
     # Update doc table of contents (see https://github.com/fordsfords/mdtoc).
     if which mdtoc.pl >/dev/null; then mdtoc.pl -b "" $F;
