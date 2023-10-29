@@ -83,4 +83,4 @@ difficult for humans to read, but easy for software tools to process.
 Note that the timestamps are in the form of [Unix time](https://en.wikipedia.org/wiki/Unix_time),
 the number of seconds since 00:00:00 UTC on 1 January 1970, excluding leap seconds.
 
-See the [main Readme](../Readme.md) for general information on the demo.
+See the [main Readme](../README.md) for general information on the demo.
