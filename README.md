@@ -24,7 +24,7 @@ Also contains an updated version of the "lbmmon.java" example app.
 &nbsp;&nbsp;&nbsp;&nbsp;&bull; [Context Stats](#context-stats)  
 &nbsp;&nbsp;&nbsp;&nbsp;&bull; [Source Stats](#source-stats)  
 &nbsp;&nbsp;&nbsp;&nbsp;&bull; [Receiver Stats](#receiver-stats)  
-<!-- TOC created by '../mdtoc/mdtoc.pl README.md' (see https://github.com/fordsfords/mdtoc) -->
+<!-- TOC created by '../mdtoc/mdtoc.pl ./README.md' (see https://github.com/fordsfords/mdtoc) -->
 <!-- mdtoc-end -->
 
 # COPYRIGHT AND LICENSE
