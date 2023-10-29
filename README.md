@@ -115,6 +115,30 @@ This minimizes the use of host resources.
 
 # DEMO ARCHITECTURE
 
+The goal of this demo is to generate and collect all forms of UM monitoring data:
+* Persistent Publisher (umesrc)
+* Persistent Subscriber (umercv)
+* Store
+* DRO (Dynamic Routing Option)
+* SRS (Statful Resolver Service)
+
+![Figure 1](figure1.png)
+
+The topology contains three Topic Resolution Domains (TRDs):
+* TRD1 - a TRD on the .4 (10G) network whose topic resolution is implemented using SRS.
+* TRD2 - a TRD on the .4 (10G) network whose topic resolution is implemented using multicast
+* Mon TRD - a TRD on the .3 (1G) network whose topic resolution is implemented using lbmrd.
+
+Of those, TRD1 and TRD2 are connected by the DRO.
+I.e. the subscriber "umercv" in TRD2 is able to join the persisted publisher "umesrc".
+The subscriber communicates with the publisher and the Store over the DRO.
+
+The green lines represent an independent UM TRD, "Mon TRD", that is isolated from TRD1 and TRD2.
+Mon TRD is used for monitoring data, and All components have a connection to it.
+This is done to ensure the monitoring data does not conflict with application data.
+
+The MCS is also on the Mon TRD, and collects the monitoring data from the other compoents.
+
 # DEMO FILES
 
 * tst.sh - Shell script to run the demo.
