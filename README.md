@@ -22,13 +22,13 @@ Also contains an updated version of the "lbmmon.java" example app.
 &bull; [LBMMON.JAVA OUTPUT](#lbmmonjava-output)  
 &bull; [IMPORTANT STATS FIELDS](#important-stats-fields)  
 &nbsp;&nbsp;&nbsp;&nbsp;&bull; [Context Stats](#context-stats)  
-&nbsp;&nbsp;&nbsp;&nbsp;&bull; [Source Stats](#source-stats)  
+&nbsp;&nbsp;&nbsp;&nbsp;&bull; [SOURCE STATS](#source-stats)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; [TCP source statistics:](#tcp-source-statistics)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; [LBT-RM source statistics:](#lbt-rm-source-statistics)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; [LBT-RU source statistics:](#lbt-ru-source-statistics)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; [LBT-IPC source statistics:](#lbt-ipc-source-statistics)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; [LBT-SMX source statistics:](#lbt-smx-source-statistics)  
-&nbsp;&nbsp;&nbsp;&nbsp;&bull; [Receiver Stats](#receiver-stats)  
+&nbsp;&nbsp;&nbsp;&nbsp;&bull; [RECEIVER STATS](#receiver-stats)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; [TCP receiver statistics:](#tcp-receiver-statistics)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; [LBT-RM receiver statistics:](#lbt-rm-receiver-statistics)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; [LBT-RU receiver statistics:](#lbt-ru-receiver-statistics)  
@@ -247,7 +247,7 @@ If this number grows by more than a few per hour, the operator should be alerted
 Approximately the number of unrecoverable loss events delivered to the application.
 If this number is greater than zero, the operator should be alerted.
 
-## [Source Stats](https://ultramessaging.github.io/currdoc/doc/API/structlbm__src__transport__stats__t__stct.html)
+## [SOURCE STATS](https://ultramessaging.github.io/currdoc/doc/API/structlbm__src__transport__stats__t__stct.html)
 
 * [type](https://ultramessaging.github.io/currdoc/doc/API/structlbm__src__transport__stats__t__stct.html#a9f9aef06b06d3432b1b7ba10583413ce) -
 Transport type for this record.
@@ -295,7 +295,7 @@ Get an idea of how many datagrams/sec the transport session is generating for us
 * [num_clients](https://ultramessaging.github.io/currdoc/doc/API/structlbm__src__transport__stats__lbtsmx__t__stct.html#a23f7ba1e7a44b9223ef29f8bdfe0c570) -
 Number of receivers connected at the time the sample was taken.
 
-## [Receiver Stats](https://ultramessaging.github.io/currdoc/doc/API/structlbm__rcv__transport__stats__t__stct.html)
+## [RECEIVER STATS](https://ultramessaging.github.io/currdoc/doc/API/structlbm__rcv__transport__stats__t__stct.html)
 
 * [type](https://ultramessaging.github.io/currdoc/doc/API/structlbm__rcv__transport__stats__t__stct.html#a3111b4af23afc72ffb71b3794b4a0835) -
 Transport type for this record.
