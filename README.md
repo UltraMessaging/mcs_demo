@@ -21,7 +21,7 @@ Also contains an updated version of the "lbmmon.java" example app.
 &bull; [OUTPUT FILES](#output-files)  
 &bull; [LBMMON.JAVA OUTPUT](#lbmmonjava-output)  
 &bull; [IMPORTANT STATS FIELDS](#important-stats-fields)  
-&nbsp;&nbsp;&nbsp;&nbsp;&bull; [Context Stats](#context-stats)  
+&nbsp;&nbsp;&nbsp;&nbsp;&bull; [CONTEXT STATS](#context-stats)  
 &nbsp;&nbsp;&nbsp;&nbsp;&bull; [SOURCE STATS](#source-stats)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; [TCP source statistics:](#tcp-source-statistics)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; [LBT-RM source statistics:](#lbt-rm-source-statistics)  
@@ -228,7 +228,7 @@ It sometimes happens that, while investigating a problme,
 the UM Support team will ask about a stat that the user weren't interested in;
 if they didn't save it, Support will have trouble diagnosing their problem.
 
-## [Context Stats](https://ultramessaging.github.io/currdoc/doc/API/structlbm__context__stats__t__stct.html)
+## [CONTEXT STATS](https://ultramessaging.github.io/currdoc/doc/API/structlbm__context__stats__t__stct.html)
 
 * [tr_dgrams_sent](https://ultramessaging.github.io/currdoc/doc/API/structlbm__context__stats__t__stct.html#af81b4e84e386bd78281c6ae10311bb88) -
 Get an idea of how many datagrams/sec the context is generating for topic resolution.
