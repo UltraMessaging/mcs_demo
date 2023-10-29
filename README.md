@@ -12,18 +12,28 @@ Also contains an updated version of the "lbmmon.java" example app.
 &bull; [COPYRIGHT AND LICENSE](#copyright-and-license)  
 &bull; [REPOSITORY](#repository)  
 &bull; [INTRODUCTION](#introduction)  
-&nbsp;&nbsp;&nbsp;&nbsp;&bull; [Prerequisits](#prerequisits)  
-&nbsp;&nbsp;&nbsp;&nbsp;&bull; [Configuration Goals](#configuration-goals)  
-&bull; [Demo Architecture](#demo-architecture)  
-&bull; [Demo Files](#demo-files)  
-&bull; [Run the Demo](#run-the-demo)  
-&nbsp;&nbsp;&nbsp;&nbsp;&bull; [Sqlite Database](#sqlite-database)  
-&bull; [Output Files](#output-files)  
-&bull; [Lbmmon.java Output](#lbmmonjava-output)  
-&bull; [Important Stats Fields](#important-stats-fields)  
+&nbsp;&nbsp;&nbsp;&nbsp;&bull; [PREREQUISITS](#prerequisits)  
+&nbsp;&nbsp;&nbsp;&nbsp;&bull; [CONFIGURATION GOALS](#configuration-goals)  
+&bull; [DEMO ARCHITECTURE](#demo-architecture)  
+&bull; [DEMO FILES](#demo-files)  
+&bull; [RUN THE DEMO](#run-the-demo)  
+&nbsp;&nbsp;&nbsp;&nbsp;&bull; [SQLITE DATABASE](#sqlite-database)  
+&bull; [OUTPUT FILES](#output-files)  
+&bull; [LBMMON.JAVA OUTPUT](#lbmmonjava-output)  
+&bull; [IMPORTANT STATS FIELDS](#important-stats-fields)  
 &nbsp;&nbsp;&nbsp;&nbsp;&bull; [Context Stats](#context-stats)  
 &nbsp;&nbsp;&nbsp;&nbsp;&bull; [Source Stats](#source-stats)  
+&nbsp;&nbsp;&nbsp;&nbsp;&bull; [TCP source statistics:](#tcp-source-statistics)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; [LBT-RM source statistics:](#lbt-rm-source-statistics)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; [LBT-RU source statistics:](#lbt-ru-source-statistics)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; [LBT-IPC source statistics:](#lbt-ipc-source-statistics)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; [LBT-SMX source statistics:](#lbt-smx-source-statistics)  
 &nbsp;&nbsp;&nbsp;&nbsp;&bull; [Receiver Stats](#receiver-stats)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; [TCP receiver statistics:](#tcp-receiver-statistics)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; [LBT-RM receiver statistics:](#lbt-rm-receiver-statistics)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; [LBT-RU receiver statistics:](#lbt-ru-receiver-statistics)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; [LBT-IPC receiver statistics:](#lbt-ipc-receiver-statistics)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; [LBT-SMX receiver statistics:](#lbt-smx-receiver-statistics)  
 <!-- TOC created by '../mdtoc/mdtoc.pl ./README.md' (see https://github.com/fordsfords/mdtoc) -->
 <!-- mdtoc-end -->
 
@@ -74,7 +84,7 @@ exmaple applications:
 Finally, there is another demo under the sub-directory [json_print](json_print/)
 that uses a user-written plug-in instead of the "sqlite" database.
 
-## Prerequisits
+## PREREQUISITS
 
 You must have the following:
 * Linux 64-bit system (reasonably recent).
@@ -87,7 +97,7 @@ You must have the following:
 (Running this demo manually on Windows is reasonably straight-forward,
 but beyond the scope of this demo.)
 
-## Configuration Goals
+## CONFIGURATION GOALS
 
 * Put monitoring data on a separate Topic Resolution Domain (TRD) from
 production data.
@@ -103,9 +113,9 @@ Note that in this demo, multicast is not used for monitoring.
 * Disable the monitoring context's MIM and request ports.
 This minimizes the use of host resources.
 
-# Demo Architecture
+# DEMO ARCHITECTURE
 
-# Demo Files
+# DEMO FILES
 
 * tst.sh - Shell script to run the demo.
 * um.xml - UM library configuration file for the application messaging TRDs.
@@ -126,15 +136,15 @@ and printing monitoring data.
 * mcs.properties - Additional configuration for MCS.
 * store.xml - Configuration file for persistent Store.
 
-# Run the Demo
+# RUN THE DEMO
 
 1. Ensure your test system has the [prereqisits](#prerequisits).
-1. Clone or download the repository at https://github.com/UltraMessaging/mcs_demo
-1. Copy the file "lbm.sh.example" to "lbm.sh" and modify per your environment.
+2. Clone or download the repository at https://github.com/UltraMessaging/mcs_demo
+3. Copy the file "lbm.sh.example" to "lbm.sh" and modify per your environment.
 I.e. insert your license key and set your file paths.
-1. Edit all xml files and update IP addresses (search for "10.29").
+4. Edit all xml files and update IP addresses (search for "10.29").
 In particular, set the multicast groups per your network in "um.xml" (search for "239.101").
-1. Enter:
+5. Enter:
 ````
 ./tst.sh
 ````
@@ -157,7 +167,7 @@ with chronological ordering within each section.
 In contrast, lbmmon.log's records are intermingled by type,
 in chronological order across record types.
 
-## Sqlite Database
+## SQLITE DATABASE
 
 The sqlite database is initially created by tst.sh using the
 sqlite3 script contained in the UM package in the file "MCS/bin/ummon_db.sql".
@@ -181,12 +191,12 @@ select * from dromonmsg;
 select * from srsmonmsg;
 ````
 
-# Output Files
+# OUTPUT FILES
 
 The "output" directory has a sample of the output from running the demo
 in the Ultra Messaging lab.
 
-# Lbmmon.java Output
+# LBMMON.JAVA OUTPUT
 
 The "lbmmon.java" program prints statistics in human-readable form.
 However, if you write your own monitoring collector program,
@@ -194,7 +204,7 @@ you will probably want to access the statistics individually.
 See [displayString.md](displayString.md) to see the field methods
 associated with each human-readable output line.
 
-# Important Stats Fields
+# IMPORTANT STATS FIELDS
 
 Most of these fields are cumulative.
 E.g. from one sample to the next,
@@ -248,12 +258,12 @@ A publishing application will send a separate source statistics sample for each
 outgoing transport session it has created.
 The structure of the sample depends on the transport type (TCP, LBT-RM, LBT-RU, etc).
 
-[TCP source statistics](https://ultramessaging.github.io/currdoc/doc/API/structlbm__src__transport__stats__tcp__t__stct.html):
+## [TCP source statistics](https://ultramessaging.github.io/currdoc/doc/API/structlbm__src__transport__stats__tcp__t__stct.html):
 
 * [num_clients](https://ultramessaging.github.io/currdoc/doc/API/structlbm__src__transport__stats__tcp__t__stct.html#afdbea18ebdc5f2370f617ed561e1caef) -
 Number of receivers connected at the time the sample was taken.
 
-[LBT-RM source statistics](https://ultramessaging.github.io/currdoc/doc/API/structlbm__src__transport__stats__lbtrm__t__stct.html):
+### [LBT-RM source statistics](https://ultramessaging.github.io/currdoc/doc/API/structlbm__src__transport__stats__lbtrm__t__stct.html):
 
 * [msgs_sent](https://ultramessaging.github.io/currdoc/doc/API/structlbm__src__transport__stats__lbtrm__t__stct.html#afdb40daed5c3da97e44b495649d063be) -
 Get an idea of how many datagrams/sec the transport session is generating for user messages (aggregates all topics on the transport session).
@@ -261,7 +271,7 @@ Get an idea of how many datagrams/sec the transport session is generating for us
 Number of individual NAKs received (not NAK packets).
 If this number grows by more than a few per hour, the operator should be alerted.
 
-[LBT-RU source statistics](https://ultramessaging.github.io/currdoc/doc/API/structlbm__src__transport__stats__lbtru__t__stct.html):
+### [LBT-RU source statistics](https://ultramessaging.github.io/currdoc/doc/API/structlbm__src__transport__stats__lbtru__t__stct.html):
 
 * [msgs_sent](https://ultramessaging.github.io/currdoc/doc/API/structlbm__src__transport__stats__lbtru__t__stct.html#a33977a0a14846929f481fa61b10a45fe) -
 Get an idea of how many datagrams/sec the transport session is generating for user messages (aggregates all topics on the transport session).
@@ -271,14 +281,14 @@ If this number grows by more than a few per hour, the operator should be alerted
 * [num_clients](https://ultramessaging.github.io/currdoc/doc/API/structlbm__src__transport__stats__lbtru__t__stct.html#af77f17b77c54450902654a0482dcd8f9) -
 Number of receivers connected at the time the sample was taken.
 
-[LBT-IPC source statistics](https://ultramessaging.github.io/currdoc/doc/API/structlbm__src__transport__stats__lbtipc__t__stct.html):
+### [LBT-IPC source statistics](https://ultramessaging.github.io/currdoc/doc/API/structlbm__src__transport__stats__lbtipc__t__stct.html):
 
 * [msgs_sent](https://ultramessaging.github.io/currdoc/doc/API/structlbm__src__transport__stats__lbtipc__t__stct.html#aa71c033adada3522adc4ee6fdcee7502) -
 Get an idea of how many datagrams/sec the transport session is generating for user messages (aggregates all topics on the transport session).
 * [num_clients](https://ultramessaging.github.io/currdoc/doc/API/structlbm__src__transport__stats__lbtipc__t__stct.html#a4cab35a71697d41cd9884878ece220ae) -
 Number of receivers connected at the time the sample was taken.
 
-[LBT-SMX source statistics](https://ultramessaging.github.io/currdoc/doc/API/structlbm__src__transport__stats__lbtsmx__t__stct.html):
+### [LBT-SMX source statistics](https://ultramessaging.github.io/currdoc/doc/API/structlbm__src__transport__stats__lbtsmx__t__stct.html):
 
 * [msgs_sent](https://ultramessaging.github.io/currdoc/doc/API/structlbm__src__transport__stats__lbtsmx__t__stct.html#aa5a75358d3fa9f713bbf231dd8b9bc3d) -
 Get an idea of how many datagrams/sec the transport session is generating for user messages (aggregates all topics on the transport session).
@@ -296,7 +306,7 @@ A subscribing application will send a separate receiver statistics sample for ea
 incoming transport session it has joined.
 The structure of the sample depends on the transport type (TCP, LBT-RM, LBT-RU, etc).
 
-[TCP receiver statistics](https://ultramessaging.github.io/currdoc/doc/API/structlbm__src__transport__stats__tcp__t__stct.html):
+### [TCP receiver statistics](https://ultramessaging.github.io/currdoc/doc/API/structlbm__src__transport__stats__tcp__t__stct.html):
 
 * [lbm_msgs_rcved](https://ultramessaging.github.io/currdoc/doc/API/structlbm__rcv__transport__stats__tcp__t__stct.html#a811cb200997a8c9a82629a8e07d978b7) -
 Get an idea of how many datagrams/sec the transport session is receiving for user messages (aggregates all topics on the transport session).
@@ -304,7 +314,7 @@ Get an idea of how many datagrams/sec the transport session is receiving for use
 Messages the receiver discarded because it was for a topic that is not subscribed.
 If this value is a significant percentage of lbm_msgs_rcved then the operator should be alerted.
 
-[LBT-RM receiver statistics](https://ultramessaging.github.io/currdoc/doc/API/structlbm__rcv__transport__stats__lbtrm__t__stct.html):
+### [LBT-RM receiver statistics](https://ultramessaging.github.io/currdoc/doc/API/structlbm__rcv__transport__stats__lbtrm__t__stct.html):
 
 * [lbm_msgs_rcved](https://ultramessaging.github.io/currdoc/doc/API/structlbm__rcv__transport__stats__lbtrm__t__stct.html#a9c6f317be17cafd8678ac556217657cd) -
 Get an idea of how many datagrams/sec the transport session is receiving for user messages (aggregates all topics on the transport session).
@@ -327,7 +337,7 @@ If this value is a significant percentage of lbm_msgs_rcved then the operator sh
 [dgrams_dropped_other](https://ultramessaging.github.io/currdoc/doc/API/structlbm__rcv__transport__stats__lbtrm__t__stct.html#add62b45ed2e496c7856cdabfcbd56d1f) -
 If any of these are non-zero, alert the operator.
 
-[LBT-RU receiver statistics](https://ultramessaging.github.io/currdoc/doc/API/structlbm__rcv__transport__stats__lbtru__t__stct.html):
+### [LBT-RU receiver statistics](https://ultramessaging.github.io/currdoc/doc/API/structlbm__rcv__transport__stats__lbtru__t__stct.html):
 
 * [lbm_msgs_rcved](https://ultramessaging.github.io/currdoc/doc/API/structlbm__rcv__transport__stats__lbtru__t__stct.html#a5c2054b4aa164bf7619b97f955f00d54) -
 Get an idea of how many datagrams/sec the transport session is receiving for user messages (aggregates all topics on the transport session).
@@ -351,7 +361,7 @@ If this value is a significant percentage of lbm_msgs_rcved then the operator sh
 [dgrams_dropped_other](https://ultramessaging.github.io/currdoc/doc/API/structlbm__rcv__transport__stats__lbtru__t__stct.html#a19058480206858399c4820c799ebd35d) -
 If any of these are non-zero, alert the operator.
 
-[LBT-IPC receiver statistics](https://ultramessaging.github.io/currdoc/doc/API/structlbm__rcv__transport__stats__lbtipc__t__stct.html):
+### [LBT-IPC receiver statistics](https://ultramessaging.github.io/currdoc/doc/API/structlbm__rcv__transport__stats__lbtipc__t__stct.html):
 
 * [lbm_msgs_rcved](https://ultramessaging.github.io/currdoc/doc/API/structlbm__rcv__transport__stats__lbtipc__t__stct.html#a57eb8d53386d3ba41f9edaccfd2ffa76) -
 Get an idea of how many datagrams/sec the transport session is receiving for user messages (aggregates all topics on the transport session).
@@ -359,7 +369,7 @@ Get an idea of how many datagrams/sec the transport session is receiving for use
 Messages the receiver discarded because it was for a topic that is not subscribed.
 If this value is a significant percentage of lbm_msgs_rcved then the operator should be alerted.
 
-[LBT-SMX receiver statistics](https://ultramessaging.github.io/currdoc/doc/API/structlbm__rcv__transport__stats__lbtsmx__t__stct.html):
+### [LBT-SMX receiver statistics](https://ultramessaging.github.io/currdoc/doc/API/structlbm__rcv__transport__stats__lbtsmx__t__stct.html):
 
 * [lbm_msgs_rcved](https://ultramessaging.github.io/currdoc/doc/API/structlbm__rcv__transport__stats__lbtsmx__t__stct.html#acbe5de43d70aa5aefd3fdff79d473202) -
 Get an idea of how many datagrams/sec the transport session is receiving for user messages (aggregates all topics on the transport session).
