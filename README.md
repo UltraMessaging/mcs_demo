@@ -23,7 +23,7 @@ Also contains an updated version of the "lbmmon.java" example app.
 &bull; [IMPORTANT STATS FIELDS](#important-stats-fields)  
 &nbsp;&nbsp;&nbsp;&nbsp;&bull; [Context Stats](#context-stats)  
 &nbsp;&nbsp;&nbsp;&nbsp;&bull; [Source Stats](#source-stats)  
-&nbsp;&nbsp;&nbsp;&nbsp;&bull; [TCP source statistics:](#tcp-source-statistics)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; [TCP source statistics:](#tcp-source-statistics)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; [LBT-RM source statistics:](#lbt-rm-source-statistics)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; [LBT-RU source statistics:](#lbt-ru-source-statistics)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; [LBT-IPC source statistics:](#lbt-ipc-source-statistics)  
@@ -258,7 +258,7 @@ A publishing application will send a separate source statistics sample for each
 outgoing transport session it has created.
 The structure of the sample depends on the transport type (TCP, LBT-RM, LBT-RU, etc).
 
-## [TCP source statistics](https://ultramessaging.github.io/currdoc/doc/API/structlbm__src__transport__stats__tcp__t__stct.html):
+### [TCP source statistics](https://ultramessaging.github.io/currdoc/doc/API/structlbm__src__transport__stats__tcp__t__stct.html):
 
 * [num_clients](https://ultramessaging.github.io/currdoc/doc/API/structlbm__src__transport__stats__tcp__t__stct.html#afdbea18ebdc5f2370f617ed561e1caef) -
 Number of receivers connected at the time the sample was taken.
