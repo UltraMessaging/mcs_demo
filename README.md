@@ -133,11 +133,15 @@ Of those, TRD1 and TRD2 are connected by the DRO.
 I.e. the subscriber "umercv" in TRD2 is able to join the persisted publisher "umesrc".
 The subscriber communicates with the publisher and the Store over the DRO.
 
-The green lines represent an independent UM TRD, "Mon TRD", that is isolated from TRD1 and TRD2.
+The green lines represent an independent UM TRD, "Mon TRD",
+which is isolated from TRD1 and TRD2.
 Mon TRD is used for monitoring data, and All components have a connection to it.
-This is done to ensure the monitoring data does not conflict with application data.
+The .3 monitoring network itself is physically separate from the .4 data network
+to ensure the monitoring data does not conflict with application data.
 
 The MCS is also on the Mon TRD, and collects the monitoring data from the other compoents.
+
+Note that Mon TRD does not carry any multicast traffic (monitoring data is sent using TCP).
 
 # DEMO FILES
 
