@@ -34,7 +34,7 @@ Also contains an updated version of the "lbmmon.java" example app.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; [LBT-RU receiver statistics:](#lbt-ru-receiver-statistics)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; [LBT-IPC receiver statistics:](#lbt-ipc-receiver-statistics)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; [LBT-SMX receiver statistics:](#lbt-smx-receiver-statistics)  
-<!-- TOC created by '../mdtoc/mdtoc.pl ./README.md' (see https://github.com/fordsfords/mdtoc) -->
+<!-- TOC created by '/home/sford/bin/mdtoc.pl ./README.md' (see https://github.com/fordsfords/mdtoc) -->
 <!-- mdtoc-end -->
 
 # COPYRIGHT AND LICENSE
@@ -66,15 +66,19 @@ See https://github.com/UltraMessaging/mcs_demo for code and documentation.
 
 # INTRODUCTION
 
-Informatica recommends that Ultra Messaging users enable the
-automatic monitoring feature in their UM-based applications and most
-UM daemons (Store, DRO, etc.).
-
 This repository has a script and configuration files to demonstrate
 UM's automatic monitoring capability using the Monitoring Collector
 Service (MCS).
 The script is designed to provide all the types of monitoring data
-from UM services and pub/sub applications.
+from UM services (Store, DRO, SRS) and user applications.
+
+For more monitoring-related examples, see:
+* https://github.com/UltraMessaging/mon_demo - concentrates on interpreting monitoring data
+* https://github.com/UltraMessaging/mcs_json_print - user plugin to access the monitoring data in JSON instead of MCS's database.
+
+Informatica recommends that Ultra Messaging users enable the
+automatic monitoring feature in their UM-based applications and most
+UM daemons (Store, DRO, etc.).
 
 This repository also contains two enhancements to existing UM
 exmaple applications:
