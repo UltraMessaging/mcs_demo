@@ -85,6 +85,9 @@ exmaple applications:
 * lbmmon.java - enhanced to understand SRS monitoring data.
 * umercv.c - enhanced to enable the use of a UM event queue.
 
+Note that the updates to lbmmon.java are now incorporated into the official UM release
+as of UM version 6.16.
+
 Finally, there is another demo under the sub-directory [json_print](json_print/)
 that uses a user-written plug-in instead of the "sqlite" database.
 
