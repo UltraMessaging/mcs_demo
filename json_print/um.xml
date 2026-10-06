@@ -75,7 +75,11 @@
       <!-- Configuration for the automatic monitoring context. Configures monitoring data.
            These setting are replicated in "srs.xml". -->
       <options type="context">
-        <option name="resolver_unicast_daemon" default-value="10.29.3.105:12801"/>
+        <!-- Override topic resolution settings inherited from the application's
+             templates. An entry of 0.0.0.0:0 clears a resolver list. -->
+        <option name="resolver_service" default-value="0.0.0.0:0"/>
+        <option name="resolver_disable_udp_topic_resolution" default-value="0"/>
+        <option name="resolver_unicast_daemon" default-value="0.0.0.0:0,10.29.3.105:12801"/>
         <option name="default_interface" default-value="10.29.3.0/24"/>
         <option name="mim_incoming_address" default-value="0.0.0.0"/>
         <option name="resolver_unicast_port_low" default-value="12802"/>
