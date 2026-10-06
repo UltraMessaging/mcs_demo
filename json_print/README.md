@@ -45,8 +45,13 @@ See https://github.com/UltraMessaging/mcs_demo for code and documentation.
 # INTRODUCTION
 
 The https://github.com/UltraMessaging/mcs_json_print repository
-contains an MCS plugin module, "JsonPrint.jsr", that replaces the sqlite database
+contains an MCS plugin module, "JsonPrint.jar", that replaces the sqlite database
 in the MCS.
+
+The current "JsonPrint.jar" requires the MCS from UM version 6.17 or above,
+so this demo does too.
+Starting with UM 6.17, the MCS uses SLF4J instead of Log4j,
+and the plugin will not load in an MCS from an earlier UM version.
 
 This directory demonstrate's its use.
 
@@ -54,8 +59,8 @@ The demo is largely the same as the main "mcs_demo",
 with the following differences:
 * The "lbmmon.java" program is not demonstrated.
 * The "sqlite" database is not used. In its place is the "JsonPrint.jar" module.
-* Due to limitations in the "MCS" command script provided with UM version 6.15,
-it cannot be used to start the MCS process when a user-written plugin is used.
+* Due to limitations in the "MCS" command script provided with UM
+(as of version 6.17), it cannot be used to start the MCS process when a user-written plugin is used.
 Instead, the proper Java command is inserted directly in "tst.sh" to run it.
 * The "mcs.xml" file is modified to use the "JsonPrint.jar" module instead of sqlite.
 * The "mcs.properties" file is modified to set the output file used by the "JsonPrint.jar" module.

@@ -75,6 +75,7 @@ from UM services (Store, DRO, SRS) and user applications.
 For more monitoring-related examples, see:
 * https://github.com/UltraMessaging/mon_demo - concentrates on interpreting monitoring data
 * https://github.com/UltraMessaging/mcs_json_print - user plugin to access the monitoring data in JSON instead of MCS's database.
+* https://github.com/UltraMessaging/lbmmon_json - standalone program that receives the monitoring data and prints it as JSON; an alternative to running the MCS.
 
 Informatica recommends that Ultra Messaging users enable the
 automatic monitoring feature in their UM-based applications and most
@@ -95,11 +96,11 @@ that uses a user-written plug-in instead of the "sqlite" database.
 
 You must have the following:
 * Linux 64-bit system (reasonably recent).
-* UMP or UMQ version 6.15 or beyond.
-* DRO 6.15 or beyond.
+* UMP or UMQ version 6.17 or beyond.
+* DRO 6.17 or beyond.
 * Java JDK 9 or beyond.
 * sqlite (reasonably recent).
-* Optional: python (to run "peek.sh").
+* Optional: python3 (to run "peek.sh").
 
 (Running this demo manually on Windows is reasonably straight-forward,
 but beyond the scope of this demo.)
@@ -206,7 +207,7 @@ in chronological order across record types.
 
 The sqlite database is initially created by tst.sh using the
 sqlite3 script contained in the UM package in the file "MCS/bin/ummon_db.sql".
-As of UM version 6.15, here is its content:
+As of UM version 6.17, here is its content:
 ````
 PRAGMA foreign_keys=OFF;
 BEGIN TRANSACTION;

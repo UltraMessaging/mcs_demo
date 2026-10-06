@@ -32,7 +32,7 @@
     <template name="res_trd1">
       <!-- For DRO endpoint TRD1. -->
       <options type="context">
-        <option name="resolver_service" default-value="10.29.4.101:12601"/>
+        <option name="resolver_service" default-value="10.29.4.105:12601"/>
         <option name="resolver_disable_udp_topic_resolution" default-value="1"/>
       </options>
     </template>
@@ -75,7 +75,7 @@
       <!-- Configuration for the automatic monitoring context. Configures monitoring data.
            These setting are replicated in "srs.xml". -->
       <options type="context">
-        <option name="resolver_unicast_daemon" default-value="10.29.3.101:12801"/>
+        <option name="resolver_unicast_daemon" default-value="10.29.3.105:12801"/>
         <option name="default_interface" default-value="10.29.3.0/24"/>
         <option name="mim_incoming_address" default-value="0.0.0.0"/>
         <option name="resolver_unicast_port_low" default-value="12802"/>

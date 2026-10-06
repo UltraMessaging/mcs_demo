@@ -7,12 +7,12 @@ kill_pids()
   kill $LBMRD_PID $MCS_PID $SRS_PID $DRO_PID $STORE_PID $UMERCV_PID $UMESRC_PID
 }
 
-if [ ! -f "lbm.sh" ]; then :
+if [ ! -f "lbm.sh" ]; then
   echo "Must create 'lbm.sh' file (use 'lbm.sh.example' as guide)." >&2
   exit 1
 fi
 
-if [ ! -f "JsonPrint.jar" ]; then :
+if [ ! -f "JsonPrint.jar" ]; then
   echo "Must get 'JsonPrint.jar' (see https://github.com/UltraMessaging/mcs_json_print)." >&2
   exit 1
 fi
@@ -33,11 +33,11 @@ lbmrd lbmrd.xml >lbmrd.log 2>&1 &
 LBMRD_PID="$!"; echo "`date` LBMRD_PID=$LBMRD_PID"
 
 # Start Monitoring Collector Service (MCS) with the JsonPrint module.
-MCS_CMD="java -classpath $L/MCS/lib/MCS.jar:$L/MCS/lib/UMS_6.15.jar:$L/MCS/lib/UMSMON_PROTO3.jar:./JsonPrint.jar:$L/MCS/lib/um-mondb-common.jar:$L/MCS/lib/protobuf-java-util-4.0.0-rc-2.jar:$L/MCS/lib/protobuf-java-4.0.0-rc-2.jar:$L/MCS/lib/gson-2.8.5.jar:$L/MCS/lib/java-getopt-1.0.13.jar:$L/MCS/lib/log4j-api-2.14.1.jar:$L/MCS/lib/log4j-core-2.14.1.jar:$L/MCS/lib/guava-24.1.1-jre.jar com.informatica.um.monitoring.UMMonitoringCollector -Z$L/MCS/bin/ummon.db mcs.xml"
+MCS_CMD="java -classpath $L/MCS/lib/MCS.jar:$L/MCS/lib/UMS_6.17.jar:$L/MCS/lib/UMSMON_PROTO3.jar:./JsonPrint.jar:$L/MCS/lib/um-mondb-sqlite.jar:$L/MCS/lib/um-mondb-common.jar:$L/MCS/lib/protobuf-java-util-3.21.12.jar:$L/MCS/lib/protobuf-java-3.21.12.jar:$L/MCS/lib/sqlite-jdbc-3.34.0.jar:$L/MCS/lib/gson-2.8.5.jar:$L/MCS/lib/java-getopt-1.0.13.jar:$L/MCS/lib/slf4j-api-1.7.25.jar:$L/MCS/lib/logback-classic-1.2.3.jar:$L/MCS/lib/logback-core-1.2.3.jar:$L/MCS/lib/guava-24.1.1-jre.jar com.informatica.um.monitoring.UMMonitoringCollector -Z$L/MCS/bin/ummon.db mcs.xml"
 
 LBM_XML_CONFIG_FILENAME=um.xml LBM_XML_CONFIG_APPNAME=mcs $MCS_CMD >mcs.log 2>&1 &
 # Wait up to 5 seconds for MCS to create its PID file.
-for I in 1 2 3 4 5; do :
+for I in 1 2 3 4 5; do
   if [ ! -f "mcs.pid" ]; then sleep 1; fi
 done
 if [ ! -f "mcs.pid" ]; then echo "`date` mcs fail?" >&2; kill_pids; exit 1; fi
@@ -46,7 +46,7 @@ MCS_PID="`cat mcs.pid`"; echo "`date` MCS_PID=$MCS_PID"
 # Start Stateful Resolver Service (SRS)
 SRS srs.xml >srs.log 2>&1 &
 # Wait up to 5 seconds for SRS to create its PID file.
-for I in 1 2 3 4 5; do :
+for I in 1 2 3 4 5; do
   if [ ! -f "srs.pid" ]; then sleep 1; fi
 done
 if [ ! -f "srs.pid" ]; then echo "`date` SRS fail?" >&2; kill_pids; exit 1; fi
@@ -55,7 +55,7 @@ SRS_PID="`cat srs.pid`"; echo "`date` SRS_PID=$SRS_PID"
 # Start Dynamic Routing Option (DRO, a.k.a. tnwgd).
 tnwgd dro.xml >dro.log 2>&1 &
 # Wait up to 5 seconds for DRO to create its PID file.
-for I in 1 2 3 4 5; do :
+for I in 1 2 3 4 5; do
   if [ ! -f "dro.pid" ]; then sleep 1; fi
 done
 if [ ! -f "dro.pid" ]; then echo "`date` DRO fail?" >&2; kill_pids; exit 1; fi
@@ -69,7 +69,7 @@ mkdir state
 # Start persistence Store.
 umestored store.xml >store.log 2>&1 &
 # Wait up to 5 seconds for Store to create its PID file.
-for I in 1 2 3 4 5; do :
+for I in 1 2 3 4 5; do
   if [ ! -f "store.pid" ]; then sleep 1; fi
 done
 if [ ! -f "store.pid" ]; then echo "`date` Store fail?" >&2; kill_pids; exit 1; fi
