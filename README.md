@@ -34,7 +34,7 @@ Also contains an updated version of the "lbmmon.java" example app.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; [LBT-RU receiver statistics:](#lbt-ru-receiver-statistics)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; [LBT-IPC receiver statistics:](#lbt-ipc-receiver-statistics)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; [LBT-SMX receiver statistics:](#lbt-smx-receiver-statistics)  
-<!-- TOC created by '/home/sford/bin/mdtoc.pl ./README.md' (see https://github.com/fordsfords/mdtoc) -->
+<!-- TOC created by '../mdtoc/mdtoc.pl ./README.md' (see https://github.com/fordsfords/mdtoc) -->
 <!-- mdtoc-end -->
 
 # COPYRIGHT AND LICENSE
