@@ -17,7 +17,7 @@ fi
 rm -rf cache state *.log *.pid *.out umercv
 
 # Enhanced "umercv" that supports the "-q" option to use the UM event queue.
-gcc -Wall -I. -I$LBM/include -I $LBM/include/lbm -L$LBM/lib -llbm -lm -o umercv verifymsg.c umercv.c
+gcc -Wall -I. -I$LBM/include -I $LBM/include/lbm -o umercv verifymsg.c umercv.c -L$LBM/lib -llbm -lm
 if [ "$?" -ne 0 ]; then echo "`date` Error" >&2; exit 1; fi
 
 # Build updated version of "lbmmon.java".
