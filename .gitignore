@@ -63,3 +63,6 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# Fetched by json_print/tst.sh
+json_print/JsonPrint.java

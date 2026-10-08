@@ -12,14 +12,21 @@ if [ ! -f "lbm.sh" ]; then
   exit 1
 fi
 
-if [ ! -f "JsonPrint.jar" ]; then
-  echo "Must get 'JsonPrint.jar' (see https://github.com/UltraMessaging/mcs_json_print)." >&2
-  exit 1
+# Get the JsonPrint plugin source (see https://github.com/UltraMessaging/mcs_json_print).
+if [ ! -f "JsonPrint.java" ]; then
+  curl -fsSL -o JsonPrint.java https://raw.githubusercontent.com/UltraMessaging/mcs_json_print/main/JsonPrint.java
+  if [ "$?" -ne 0 ]; then echo "`date` Error fetching JsonPrint.java" >&2; rm -f JsonPrint.java; exit 1; fi
 fi
 
 . ./lbm.sh
 
-rm -rf cache state *.log *.pid *.out umercv
+rm -rf cache state *.log *.pid *.out umercv *.class JsonPrint.jar
+
+# Build the plugin with the same Java that will run the MCS.
+javac -cp $L/MCS/lib/MCS.jar:$L/MCS/lib/UMS_6.17.jar:$L/MCS/lib/UMSMON_PROTO3.jar:$L/MCS/lib/um-mondb-common.jar:$L/MCS/lib/protobuf-java-util-3.21.12.jar:$L/MCS/lib/protobuf-java-3.21.12.jar:$L/MCS/lib/gson-2.8.5.jar:$L/MCS/lib/java-getopt-1.0.13.jar:$L/MCS/lib/slf4j-api-1.7.25.jar:$L/MCS/lib/guava-24.1.1-jre.jar JsonPrint.java
+if [ "$?" -ne 0 ]; then echo "`date` Error" >&2; exit 1; fi
+jar cf JsonPrint.jar *.class
+if [ "$?" -ne 0 ]; then echo "`date` Error" >&2; exit 1; fi
 
 # Enhanced "umercv" that supports the "-q" option to use the UM event queue.
 gcc -Wall -I. -I$LBM/include -I $LBM/include/lbm -o umercv verifymsg.c umercv.c -L$LBM/lib -llbm -lm

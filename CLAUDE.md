@@ -30,8 +30,11 @@ monitoring.
   `JsonPrint` connector from the sibling repo
   https://github.com/UltraMessaging/mcs_json_print (`class:JsonPrint` in
   `json_print/mcs.xml`; output path set in `json_print/mcs.properties`). No
-  `lbmmon.java`, no sqlite. The user must build `JsonPrint.jar` in
-  `mcs_json_print` and copy it into `json_print/`.
+  `lbmmon.java`, no sqlite. `tst.sh` fetches `JsonPrint.java` from GitHub
+  (`main`) if it isn't already present, then always compiles `JsonPrint.jar`
+  with the `javac` on the PATH, so the jar's class version matches the Java
+  that runs the MCS. The `javac` classpath in `tst.sh` hard-codes the same
+  versioned MCS jar names as the `java` classpath.
 
 The two directories each carry their own full copy of the config files
 (`um.xml`, `dro.xml`, `srs.xml`, `store.xml`, `lbmrd.xml`), `umercv.c`, and the
@@ -72,14 +75,13 @@ cp lbm.sh.example lbm.sh      # edit L= and LBM_LICENSE_INFO
 
 cd json_print
 cp lbm.sh.example lbm.sh      # edit as above
-cp ../../mcs_json_print/JsonPrint.jar .
 ./tst.sh                      # output JSON goes to tst.json
 ```
 
 Before a real run, the XML configs need host-specific IP addresses (search for
 `10.29`) and multicast groups in `um.xml` (search for `239.101`). The demo
 needs a UM license, plus `gcc` to build `umercv`. The top-level demo also needs
-`sqlite3`.
+`sqlite3`; `json_print/` needs a JDK and `curl`.
 
 There are no automated tests. `output/` holds sample logs from a lab run and
 is checked in as reference output.
