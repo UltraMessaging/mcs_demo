@@ -21,10 +21,9 @@
       <option scope="context" name="resolver_disable_udp_topic_resolution" value="0"/>
       <option scope="context" name="resolver_unicast_daemon" value="0.0.0.0:0,10.29.3.105:12801"/>
       <option scope="context" name="default_interface" value="10.29.3.0/24"/>
-      <option scope="context" name="request_tcp_interface" value="10.29.3.0/24"/>
       <option scope="context" name="mim_incoming_address" value="0.0.0.0"/>
       <option scope="context" name="resolver_unicast_port_low" value="12802"/>
-      <option scope="context" name="resolver_unicast_port_high" value="12809"/>
+      <option scope="context" name="resolver_unicast_port_high" value="12819"/>
       <option scope="context" name="request_tcp_reuseaddr" value="1"/>
       <option scope="source" name="transport" value="tcp"/>
     </lbm-attributes>
