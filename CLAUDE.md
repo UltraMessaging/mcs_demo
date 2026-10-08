@@ -53,6 +53,16 @@ helper headers. A fix to a shared file usually has to be made in both places.
   sources. `lbm.sh` is gitignored. Users create it from `lbm.sh.example` and
   add their license key.
 
+## Monitoring context configuration
+
+The automatic-monitoring context (`29west_statistics_context`) inherits the
+application's templates before its own `mon_ctx` template is applied. So
+`mon_ctx` must be self-contained: it clears any inherited SRS and `lbmrd`
+lists with `0.0.0.0:0` entries and re-enables UDP topic resolution before
+adding the `lbmrd`. Without this, `umesrc`'s monitoring context resolves via
+SRS and never reaches the MCS. `srs.xml` duplicates these settings and must be
+kept in sync.
+
 ## Running
 
 ```sh
