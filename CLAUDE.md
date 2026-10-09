@@ -34,7 +34,9 @@ monitoring.
   (`main`) if it isn't already present, then always compiles `JsonPrint.jar`
   with the `javac` on the PATH, so the jar's class version matches the Java
   that runs the MCS. The `javac` classpath in `tst.sh` hard-codes the same
-  versioned MCS jar names as the `java` classpath.
+  versioned MCS jar names as the `java` classpath. The `curl` must run before
+  `tst.sh` sources `lbm.sh`: UM's `lib/` ships its own OpenSSL, and with it on
+  `LD_LIBRARY_PATH` the system `curl` fails with a symbol lookup error.
 
 The two directories each carry their own full copy of the config files
 (`um.xml`, `dro.xml`, `srs.xml`, `store.xml`, `lbmrd.xml`), `umercv.c`, and the
