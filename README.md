@@ -12,9 +12,10 @@ Also contains an updated version of the "lbmmon.java" example app.
 &bull; [COPYRIGHT AND LICENSE](#copyright-and-license)  
 &bull; [REPOSITORY](#repository)  
 &bull; [INTRODUCTION](#introduction)  
-&nbsp;&nbsp;&nbsp;&nbsp;&bull; [PREREQUISITS](#prerequisits)  
+&nbsp;&nbsp;&nbsp;&nbsp;&bull; [PREREQUISITES](#prerequisites)  
 &nbsp;&nbsp;&nbsp;&nbsp;&bull; [CONFIGURATION GOALS](#configuration-goals)  
 &bull; [DEMO ARCHITECTURE](#demo-architecture)  
+&nbsp;&nbsp;&nbsp;&nbsp;&bull; [HOSTS AND NETWORKS](#hosts-and-networks)  
 &bull; [DEMO FILES](#demo-files)  
 &bull; [RUN THE DEMO](#run-the-demo)  
 &nbsp;&nbsp;&nbsp;&nbsp;&bull; [SQLITE DATABASE](#sqlite-database)  
@@ -92,14 +93,29 @@ as of UM version 6.16.
 Finally, there is another demo under the sub-directory [json_print](json_print/)
 that uses a user-written plug-in instead of the "sqlite" database.
 
-## PREREQUISITS
+## PREREQUISITES
 
 You must have the following:
 * Linux 64-bit system (reasonably recent).
-* UMP or UMQ version 6.17 or beyond.
-* DRO 6.17 or beyond.
-* Java JDK 9 or beyond.
-* sqlite (reasonably recent).
+* UMP or UMQ version 6.17, including the DRO, SRS, and MCS.
+The scripts hard-code versioned jar file names from UM 6.17
+(for example "UMS_6.17.jar" and "protobuf-java-3.21.12.jar").
+To use a later UM version,
+update the jar names in the "javac" and "java" commands in "tst.sh"
+(and in "json_print/tst.sh") to match the files in your UM package.
+See "$L/MCS/bin/MCS" for the jar names your MCS uses.
+* A UM license key that includes persistence and the DRO
+(e.g. "Product=LBM,UME,UMQ,UMDRO").
+* Java JDK (not just a JRE) 11 or beyond.
+The JDK is needed to compile "lbmmon.java".
+Java 8 cannot run the UM 6.17 MCS.
+* gcc (to build "umercv").
+* sqlite3 command-line tool (reasonably recent).
+* A network interface that supports multicast.
+The application messaging TRD "TRD2" uses multicast for both topic resolution
+and data (LBT-RM).
+Some environments (many cloud VMs, some virtual machine and WSL setups)
+do not pass multicast; there, the subscriber will never receive data.
 * Optional: python3 (to run "peek.sh").
 
 (Running this demo manually on Windows is reasonably straight-forward,
@@ -151,6 +167,61 @@ The MCS is also on the Mon TRD, and collects the monitoring data from the other 
 
 Note that Mon TRD does not carry any multicast traffic (monitoring data is sent using TCP).
 
+## HOSTS AND NETWORKS
+
+The figure shows separate boxes for clarity,
+but "tst.sh" runs every component on a single host.
+That host has two network interfaces:
+* 10.29.4.105 on the 10.29.4.0/24 network (the ".4" data network).
+* 10.29.3.105 on the 10.29.3.0/24 network (the ".3" monitoring network).
+
+Before running the demo, replace these addresses with your host's.
+The XML files use two forms of address:
+a network (e.g. "10.29.4.0/24"), which selects the interface,
+and a host address (e.g. "10.29.4.105"), which is where the SRS or lbmrd
+is listening.
+Since everything runs on one host, the host addresses are that host's
+own IP addresses.
+
+| File | Line content | Set to |
+| ---- | ------------ | ------ |
+| um.xml | default_interface 10.29.4.0/24 (two places) | Data network |
+| um.xml | resolver_service 10.29.4.105:12601 | Data interface IP (SRS) |
+| um.xml | default_interface 10.29.3.0/24 (template "mon_ctx") | Monitoring network |
+| um.xml | resolver_unicast_daemon ...,10.29.3.105:12801 | Monitoring interface IP (lbmrd) |
+| um.xml | resolver_multicast_address 239.101.3.1 | Multicast group for TRD2 topic resolution |
+| um.xml | transport_lbtrm_multicast_address 239.101.3.2, .3, .4 | Multicast groups for data |
+| srs.xml | interface 10.29.4.105 | Data interface IP |
+| srs.xml | resolver_unicast_daemon, default_interface | Same as "mon_ctx" in um.xml |
+| lbmrd.xml | interface 10.29.3.0/24 | Monitoring network |
+| store.xml | interface 10.29.4.0/24 | Data network |
+
+The multicast groups must be unused on your network,
+and the four groups must be different from each other.
+
+If your host has only one network interface,
+use that interface's network and IP address for both the data and the
+monitoring entries in the table above.
+No other changes are needed.
+The monitoring and data traffic then share the interface,
+but the TRDs remain separate.
+
+The demo uses these ports, which must be free on the host:
+
+| Component | Protocol | Port(s) |
+| --------- | -------- | ------- |
+| SRS | TCP | 12601 |
+| lbmrd | UDP | 12801 |
+| Store | TCP | 12801 |
+| Store web monitor | TCP | 12811 |
+| Monitoring contexts (lbmrd clients) | UDP | 12802-12819 |
+| Application request ports | TCP | 14391-14499 |
+
+Other ports use UM defaults.
+
+The "json_print" demo uses the same addresses and ports, in its own copies
+of the XML files.
+
 # DEMO FILES
 
 * tst.sh - Shell script to run the demo.
@@ -174,12 +245,13 @@ and printing monitoring data.
 
 # RUN THE DEMO
 
-1. Ensure your test system has the [prereqisits](#prerequisits).
+1. Ensure your test system has the [prerequisites](#prerequisites).
 2. Clone or download the repository at https://github.com/UltraMessaging/mcs_demo
 3. Copy the file "lbm.sh.example" to "lbm.sh" and modify per your environment.
 I.e. insert your license key and set your file paths.
 4. Edit all xml files and update IP addresses (search for "10.29").
 In particular, set the multicast groups per your network in "um.xml" (search for "239.101").
+See [HOSTS AND NETWORKS](#hosts-and-networks).
 5. Enter:
 ````
 ./tst.sh

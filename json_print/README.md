@@ -67,6 +67,21 @@ Instead, the proper Java command is inserted directly in "tst.sh" to run it.
 
 # DEMO
 
+The prerequisites are those of the [main demo](../README.md#prerequisites),
+except that sqlite3 and python3 are not needed, and you also need:
+* "curl" and Internet access, unless you supply your own "JsonPrint.java"
+(see below).
+
+The UM version caveat applies here too:
+the "javac" and "java" commands in "tst.sh" hard-code the jar names
+from the UM 6.17 MCS.
+For a later UM version,
+copy the classpath from "$L/MCS/bin/MCS" in your UM package.
+
+Edit the IP addresses and multicast groups as described in the main demo's
+[HOSTS AND NETWORKS](../README.md#hosts-and-networks) section.
+This directory has its own copies of the XML files, so edit them here.
+
 1. Clone or download the repository at https://github.com/UltraMessaging/mcs_demo
 2. cd to json_print
 3. Copy the file "lbm.sh.example" to "lbm.sh" and modify per your environment.

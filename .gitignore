@@ -66,3 +66,19 @@ dkms.conf
 
 # Fetched by json_print/tst.sh
 json_print/JsonPrint.java
+
+# Created by tst.sh runs (anchored so that the reference files in output/
+# are not affected)
+/umercv
+/mcs.db
+/*.log
+/*.pid
+/*.out
+/cache/
+/state/
+/json_print/umercv
+/json_print/tst.json
+/json_print/*.log
+/json_print/*.pid
+/json_print/cache/
+/json_print/state/
