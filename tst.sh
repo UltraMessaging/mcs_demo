@@ -13,6 +13,27 @@ if [ ! -f "lbm.sh" ]; then
 fi
 
 . ./lbm.sh
+if [ -n "$LBM_ERR" ]; then exit 1; fi
+
+# Make sure the SmartHeap library that "umestored" will load (the first one on
+# LD_LIBRARY_PATH) suits this host's glibc. A SmartHeap that doesn't reference
+# GLIBC_2.34 crashes the Store silently on glibc 2.34 or later; one that does
+# fails to load on an earlier glibc.
+SH_LIB=""
+OLD_IFS="$IFS"; IFS=":"
+for D in $LD_LIBRARY_PATH; do
+  if [ -f "${D:-.}/libsmartheap_smp64.so" ]; then SH_LIB="${D:-.}/libsmartheap_smp64.so"; break; fi
+done
+IFS="$OLD_IFS"
+if [ -z "$SH_LIB" ]; then echo "`date` Error, libsmartheap_smp64.so not found on LD_LIBRARY_PATH" >&2; exit 1; fi
+GLIBC_MINOR=`getconf GNU_LIBC_VERSION | cut -d' ' -f2 | cut -d. -f2`
+if objdump -T "$SH_LIB" | grep GLIBC_2.34 >/dev/null; then SH_NEW=1; else SH_NEW=0; fi
+if [ "$GLIBC_MINOR" -ge 34 -a "$SH_NEW" -eq 0 ]; then
+  echo "`date` Error, $SH_LIB predates glibc 2.34 but this host has glibc 2.$GLIBC_MINOR; get the UM_Glibc_2.34 SmartHeap fix from UM support and put it first on LD_LIBRARY_PATH" >&2; exit 1
+fi
+if [ "$GLIBC_MINOR" -lt 34 -a "$SH_NEW" -eq 1 ]; then
+  echo "`date` Error, $SH_LIB requires glibc 2.34 but this host has glibc 2.$GLIBC_MINOR; put the SmartHeap that shipped with UM first on LD_LIBRARY_PATH" >&2; exit 1
+fi
 
 rm -rf cache state *.log *.pid *.out umercv
 

@@ -110,12 +110,18 @@ See "$L/MCS/bin/MCS" for the jar names your MCS uses.
 The JDK is needed to compile "lbmmon.java".
 Java 8 cannot run the UM 6.17 MCS.
 * gcc (to build "umercv").
+* On glibc 2.34 or later (RHEL 9 and newer), the Store ("umestored") needs
+the "UM_Glibc_2.34" SmartHeap library fix from UM support;
+the library shipped with some UM 6.17 installs crashes the Store at startup
+with an empty log.
+"tst.sh" checks that the SmartHeap library first on "LD_LIBRARY_PATH"
+suits the host's glibc and stops with a message if it doesn't.
 * sqlite3 command-line tool (reasonably recent).
 * A network interface that supports multicast.
-The application messaging TRD "TRD2" uses multicast for both topic resolution
+The application messaging TRD "TRD1" uses multicast for both topic resolution
 and data (LBT-RM).
 Some environments (many cloud VMs, some virtual machine and WSL setups)
-do not pass multicast; there, the subscriber will never receive data.
+do not pass multicast; there, the DRO will never receive data from the publisher, so the subscriber gets nothing.
 * Optional: python3 (to run "peek.sh").
 
 (Running this demo manually on Windows is reasonably straight-forward,
@@ -149,8 +155,8 @@ The goal of this demo is to generate and collect all forms of UM monitoring data
 ![Figure 1](figure1.png)
 
 The topology contains three Topic Resolution Domains (TRDs):
-* TRD1 - a TRD on the .4 (10G) network whose topic resolution is implemented using SRS.
-* TRD2 - a TRD on the .4 (10G) network whose topic resolution is implemented using multicast
+* TRD1 - a TRD on the .4 (10G) network whose topic resolution is implemented using multicast
+* TRD2 - a TRD on the .4 (10G) network whose topic resolution is implemented using SRS.
 * Mon TRD - a TRD on the .3 (1G) network whose topic resolution is implemented using lbmrd.
 
 Of those, TRD1 and TRD2 are connected by the DRO.
@@ -159,6 +165,10 @@ The subscriber communicates with the publisher and the Store over the DRO.
 
 The green lines represent an independent UM TRD, "Mon TRD",
 which is isolated from TRD1 and TRD2.
+Unlike TRD1 and TRD2, Mon TRD has no DRO endpoint, so it has no TRD number.
+Likewise, the parts of each application's shape that touch the .3 network
+belong to Mon TRD, even though the diagram draws no boundary around it.
+Each application sits in more than one TRD, which is why the shapes overlap.
 Mon TRD is used for monitoring data, and All components have a connection to it.
 The .3 monitoring network itself is physically separate from the .4 data network
 to ensure the monitoring data does not conflict with application data.
@@ -172,13 +182,13 @@ Note that Mon TRD does not carry any multicast traffic (monitoring data is sent 
 The figure shows separate boxes for clarity,
 but "tst.sh" runs every component on a single host.
 That host has two network interfaces:
-* 10.29.4.105 on the 10.29.4.0/24 network (the ".4" data network).
-* 10.29.3.105 on the 10.29.3.0/24 network (the ".3" monitoring network).
+* 10.29.4.121 on the 10.29.4.0/24 network (the ".4" data network).
+* 10.29.3.121 on the 10.29.3.0/24 network (the ".3" monitoring network).
 
 Before running the demo, replace these addresses with your host's.
 The XML files use two forms of address:
 a network (e.g. "10.29.4.0/24"), which selects the interface,
-and a host address (e.g. "10.29.4.105"), which is where the SRS or lbmrd
+and a host address (e.g. "10.29.4.121"), which is where the SRS or lbmrd
 is listening.
 Since everything runs on one host, the host addresses are that host's
 own IP addresses.
@@ -186,18 +196,18 @@ own IP addresses.
 | File | Line content | Set to |
 | ---- | ------------ | ------ |
 | um.xml | default_interface 10.29.4.0/24 (two places) | Data network |
-| um.xml | resolver_service 10.29.4.105:12601 | Data interface IP (SRS) |
+| um.xml | resolver_service 10.29.4.121:12601 | Data interface IP (SRS, TRD2) |
 | um.xml | default_interface 10.29.3.0/24 (template "mon_ctx") | Monitoring network |
-| um.xml | resolver_unicast_daemon ...,10.29.3.105:12801 | Monitoring interface IP (lbmrd) |
-| um.xml | resolver_multicast_address 239.101.3.1 | Multicast group for TRD2 topic resolution |
-| um.xml | transport_lbtrm_multicast_address 239.101.3.2, .3, .4 | Multicast groups for data |
-| srs.xml | interface 10.29.4.105 | Data interface IP |
+| um.xml | resolver_unicast_daemon ...,10.29.3.121:12801 | Monitoring interface IP (lbmrd) |
+| um.xml | resolver_multicast_address 239.101.3.1 | Multicast group for TRD1 topic resolution |
+| um.xml | transport_lbtrm_multicast_address 239.101.3.2, .4 | Multicast groups for TRD1 data |
+| srs.xml | interface 10.29.4.121 | Data interface IP |
 | srs.xml | resolver_unicast_daemon, default_interface | Same as "mon_ctx" in um.xml |
 | lbmrd.xml | interface 10.29.3.0/24 | Monitoring network |
 | store.xml | interface 10.29.4.0/24 | Data network |
 
 The multicast groups must be unused on your network,
-and the four groups must be different from each other.
+and the three groups must be different from each other.
 
 If your host has only one network interface,
 use that interface's network and IP address for both the data and the

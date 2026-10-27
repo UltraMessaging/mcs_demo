@@ -1,6 +1,8 @@
 #!/bin/sh
 # lbm.sh.example. Copy to "lbm.sh" and replace license info with yours.
 
+LBM_ERR=""
+
 export LBM_LICENSE_INFO="Product=LBM,UME,UMQ,UMDRO:Organization=xxxx:Expiration-Date=never:License-Key=xxxx xxxx xxxx xxxx"
 
 L=$HOME/UMP_6.17
